@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Detail</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            display: flex;
+            gap: 30px;
+        }
+
+        .image-box {
+            width: 40%;
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .details {
+            width: 60%;
+        }
+
+        .details h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: green;
+            margin: 10px 0;
+        }
+
+        .info {
+            margin: 8px 0;
+            color: #444;
+        }
+
+        .desc {
+            margin-top: 15px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- IMAGE -->
+    <div class="image-box">
+        {% if item.image %}
+            <img src="{{ item.image.url }}" alt="{{ item.product_name }}">
+        {% else %}
+            <img src="https://via.placeholder.com/300" alt="No Image">
+        {% endif %}
+    </div>
+
+    <!-- DETAILS -->
+    <div class="details">
+
+        <h2>{{ item.product_name }}</h2>
+
+        <div class="price">
+            ₹ {{ item.product_price }}
+        </div>
+        <div class="info">
+    <strong>Available Quantity:</strong> {{ item.product_quantity }}
+</div>
+
+        <div class="info">
+            <strong>Category:</strong> {{ item.category.name }}
+        </div>
+
+        {% if item.subcategory %}
+        <div class="info">
+            <strong>Subcategory:</strong> {{ item.subcategory.name }}
+        </div>
+        {% endif %}
+
+       <div class="desc">
+    <strong>Description:</strong><br>
+    {{ item.description }}
+</div>
+
+<!-- 🔥 PURCHASE FORM -->
+<form method="POST">
+    {% csrf_token %}
+
+    <div class="info">
+        <strong>Available Quantity:</strong> {{ item.product_quantity }}
+    </div>
+
+    <input type="number" name="quantity" min="1" max="{{ item.product_quantity }}" required>
+
+    {% if item.product_quantity > 0 %}
+        <button type="submit" class="btn">Buy Now</button>
+    {% else %}
+        <p style="color:red;">Out of Stock</p>
+    {% endif %}
+</form>
+
+
+
+<!-- BACK BUTTON -->
+<a href="/product/" class="btn">← Back to Products</a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

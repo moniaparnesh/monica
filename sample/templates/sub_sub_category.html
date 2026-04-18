@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Add sub_category</h4>
+                </div>
+
+                <div class="card-body">
+<form method="POST">
+        {% csrf_token %}
+
+        <!-- Render the form fields -->
+        {{ m.as_p }}
+        <!-- This will include both 'name' input and 'category' dropdown -->
+
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-success">Save Subcategory</button>
+        </div>
+    </form>
+                        <div class="mt-4">
+    <h5>Saved Categories</h5>
+
+    {% for cat in categories %}
+        <div class="alert alert-secondary">
+            {{ cat.name }}
+        </div>
+    {% empty %}
+        <p>No categories yet.</p>
+    {% endfor %}
+</div>
+
+                    <h5>Subcategories</h5>
+{% for sub in sub_categories %}
+    <div>
+        {{ sub.name }}
+    </div>
+{% empty %}
+    <p>No subcategories yet.</p>
+{% endfor %}
+                </div>
+                <div class="mt-4">
+    <h5>Saved subsubcategories</h5>
+
+    {% for s in sub_sub_categories %}
+        <button onclick="window.location.href='{% url 'sub_sub_category' %}'"
+            class="btn btn-dark text-uppercase mt-3">
+        {{ s.name }}
+    </button>
+    {% empty %}
+        <p>No categories yet.</p>
+    {% endfor %}
+</div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

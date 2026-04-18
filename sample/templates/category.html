@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category Page</title>
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Add Category</h4>
+                </div>
+
+                <div class="card-body">
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Form fields -->
+
+    {{ form.as_p }}
+
+
+    <br><br>
+
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success">Save Category</button>
+                        </div>
+                    </form>
+                        <div class="mt-4">
+    <h5>Saved Categories</h5>
+
+    {% for cat in categories %}
+        <div class="alert alert-secondary">
+            {{ cat.name }}
+        </div>
+    {% empty %}
+        <p>No categories yet.</p>
+    {% endfor %}
+</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<!--    &lt;!&ndash; Category List &ndash;&gt;-->
+<!--    <div class="row mt-5">-->
+<!--        <div class="col-md-6 offset-md-3">-->
+
+<!--            <h4 class="text-center">Category List</h4>-->
+
+<!--            <tbody>-->
+<!--        {% for cat in categories %}-->
+<!--        <tr>-->
+<!--            <td>{{ cat.id }}</td>-->
+<!--            <td>{{ cat.name }}</td>-->
+<!--
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" class="text-center">No categories</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
