@@ -296,21 +296,7 @@
     </div>
   </nav>
 
-   <h3>Admin Dashboard</h3>
 
-<h3>Out of Stock</h3>
-{% for p in out_stock_products %}
-    <p>{{ p.product_name }} (0 left)</p>
-{% empty %}
-    <p>No out of stock products</p>
-{% endfor %}
-
-<h3>Low Stock</h3>
-{% for p in low_stock_products %}
-    <p>{{ p.product_name }} ({{ p.product_quantity }} left)</p>
-{% empty %}
-    <p>No low stock products</p>
-{% endfor %}
   <script src="{% static 'js/jquery.min.js' %}"></script>
   <script src="{% static 'js/plugins.js' %}"></script>
   <script src="{% static 'js/SmoothScroll.js' %}"></script>
