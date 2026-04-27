@@ -126,11 +126,10 @@
 
     <input type="number" name="quantity" min="1" max="{{ item.product_quantity }}" required>
 
-    {% if item.product_quantity > 0 %}
-        <button type="submit" class="btn">Buy Now</button>
-    {% else %}
-        <p style="color:red;">Out of Stock</p>
-    {% endif %}
+
+<a href="{% url 'add_cart' item.id %}" class="btn">
+    Add to Cart
+</a>
 </form>
 
 
