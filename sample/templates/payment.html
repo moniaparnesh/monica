@@ -1,31 +1,4 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<form action="/success" method="POST">-->
-<!--    {% csrf_token %}-->
-<!--<script-->
-<!--    src="https://checkout.razorpay.com/v1/checkout.js"-->
-<!--    data-key="rzp_test_SROSnyInFv81S4"-->
-<!--    data-amount={{amount}}-->
-<!--    data-currency="INR"-->
-<!--    data-order_id="{{payment.id}}"-->
-<!--    data-buttontext="Pay with Razorpay"-->
-<!--    data-name="django payment"-->
-<!--    data-description="this is test payment"-->
-<!--    data-image="https://example.com/your_logo.jpg"-->
-<!--    data-prefill.name="Gaurav Kumar"-->
-<!--    data-prefill.email="django@test.com"-->
-<!--    data-theme.color="#F37254"-->
-<!--&gt;</script>-->
-<!--<input type="hidden" custom="Hidden Element" name="hidden">-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
-
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +9,7 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             background: #f4f6f9;
             display: flex;
             justify-content: center;
@@ -49,75 +22,62 @@
             background: #fff;
             padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        .title {
-            font-size: 20px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .user {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .amount {
-            font-size: 24px;
-            font-weight: bold;
-            color: #F37254;
-            margin-bottom: 20px;
-        }
-
-        .note {
-            font-size: 13px;
-            color: #888;
-            margin-bottom: 20px;
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-<form action="/success" method="POST">
-    {% csrf_token %}
 
 <div class="box">
 
-    <div class="title">Secure Payment</div>
+    <h2>₹ {{ d }}</h2>
+    <p>Hello {{ user.name }}</p>
 
-    <div class="user">
-        Hello, {{ user.name }}
-    </div>
+    <!-- Razorpay button -->
+    <button id="pay-btn" style="background:#F37254; color:white;">
+        Pay Now
+    </button>
 
-    <div class="amount">
-        ₹ {{ d|floatformat:2 }}
-    </div>
+    <br><br>
 
-    <div class="note">
-        Click below to complete your payment safely with Razorpay
-    </div></div>
+    <!-- COD button -->
+    <a href="{% url 'cod_success' %}">
+    <button style="background: gray; padding:10px 20px;">
+        Pay Later (COD)
+    </button>
+</a>
 
- <script
-    src="https://checkout.razorpay.com/v1/checkout.js"
-    data-key="rzp_test_SROSnyInFv81S4"
-    data-amount="{{ amount }}"
-    data-currency="INR"
-    data-order_id="{{ order.id }}"
-    data-buttontext="Pay with Razorpay"
-    data-name="django payment"
-    data-description="this is test payment"
-    data-image="https://example.com/your_logo.jpg"
-    data-prefill.name="{{ user.name }}"
-    data-prefill.email="{{ user.email }}"
-    data-theme.color="#F37254">
-</script>
-<input type="hidden" custom="Hidden Element" name="hidden">
-</form>
+
 </div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    "key": "rzp_test_SROSnyInFv81S4",
+    "amount": "{{ amount }}",
+    "currency": "INR",
+    "order_id": "{{ order.id }}",
+
+    "handler": function (response){
+        window.location.href = "/success?payment_id=" + response.razorpay_payment_id;
+    }
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById("pay-btn").onclick = function(){
+    rzp.open();
+};
+</script>
 
 </body>
 </html>
