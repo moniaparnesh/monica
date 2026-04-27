@@ -244,7 +244,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">
                   <li class="nav-item">
-                      <a class="nav-link" href="../login">Home</a>
+                      <a class="nav-link" href="../userhome">Home</a>
                   </li>
                  <li class="nav-item">
                       <a class="nav-link" href="../product">Product</a>
@@ -320,6 +320,13 @@
                            onclick="return confirm('Are you sure you want to remove this item?');">
                            Remove
                         </a>
+                        {% if item.product_details and item.product_details.id %}
+    <a href="{% url 'add_cart' item.product_details.id %}" class="btn btn-primary">
+        Add to Cart
+    </a>
+{% else %}
+    <span class="text-danger">Product not available</span>
+{% endif %}
                     </div>
                 </div>
             {% endfor %}
