@@ -133,86 +133,6 @@ def user(request):
     else:
         return redirect(login)
 
-# def Add_Product(request):
-#     p = normal()
-#     categories = Category.objects.all()
-#     subcategories = SubCategory.objects.all()
-#     if request.method == 'POST':
-#        p = normal(request.POST, request.FILES)
-#        if p.is_valid():
-#           a = p.cleaned_data['product_name']
-#           b = p.cleaned_data['product_price']
-#           c = p.cleaned_data['product_quantity']
-#           d = p.cleaned_data['product_image']
-#           cat_id = request.POST.get('categories')
-#           sub_id = request.POST.get('subcategories')
-#           e = Category.objects.get(id=cat_id)
-#           subcategory_obj = SubCategory.objects.get(id=sub_id)
-#
-#           product.objects.create(product_name=a, product_price=b, product_quantity=c, image=d, category=e,sub_category=subcategory_obj).save()
-#           print(e)
-#           return HttpResponse("saved")
-#     else:
-#           return render(request, 'Add_Product.html', {'categories':categories,'subcategories': subcategories,'data':p})
-#     return render(request, 'Add_Product.html')
-
-# def Add_Product(request):
-#     username = request.session.get('user')
-#
-#     if not username:
-#       return redirect(login)
-#     p = normal()
-#     category = Category.objects.all()
-#     subcategory = SubCategory.objects.all()
-#
-#     if request.method == 'POST':
-#         p = normal(request.POST, request.FILES)
-#         if p.is_valid():
-#             a = p.cleaned_data['product_name']
-#             b = p.cleaned_data['product_price']
-#             c = p.cleaned_data['product_quantity']
-#             d = p.cleaned_data['product_image']
-#
-#             hair_type = p.cleaned_data.get('hair_type')
-#             hair_color = p.cleaned_data.get('hair_color')
-#             skin_type = p.cleaned_data.get('skin_type')
-#
-#             cat_id = request.POST.get('category')
-#             sub_id = request.POST.get('subcategory')
-#
-#             if not cat_id or not sub_id:
-#                 return HttpResponse("Please select both category and subcategory!")
-#
-#             try:
-#                 category_obj = Category.objects.get(id=cat_id)
-#             except Category.DoesNotExist:
-#                 return HttpResponse("Selected category does not exist!")
-#
-#             try:
-#                 subcategory_obj = SubCategory.objects.get(id=sub_id)
-#             except SubCategory.DoesNotExist:
-#                 return HttpResponse("Selected subcategory does not exist!")
-#
-#             product.objects.create(
-#                 product_name=a,
-#                 product_price=b,
-#                 product_quantity=c,
-#                 image=d,
-#                 category=category_obj,
-#                 sub_category=subcategory_obj,
-#                 hair_type = hair_type,
-#                 hair_color = hair_color,
-#                 skin_type = skin_type
-#
-#             )
-#             return HttpResponse("Product saved!")
-#
-#     return render(request, 'Add_Product.html', {
-#         'category': category,
-#         'subcategory': subcategory,
-#         'data': p
-#     })
-
 
 
 
@@ -315,55 +235,6 @@ def modelform(request):
     return render(request, 'forms.html', {'data':m})
 
 
-# def products(request, category_id=None):
-#     username = request.session.get('user')
-#     if not username:
-#         return redirect('login')
-#     categories = Category.objects.all()
-#     if category_id:
-#         category = get_object_or_404(Category, id=category_id)
-#         if category:
-#
-#            data = product.objects.filter(category=category)
-#         else:
-#            sub=SubCategory.objects.filter(id=category_id).first()
-#            if sub:
-#               data=product.objects.filter(subcategory=sub)
-#     else:
-#         data = product.objects.all()
-#         category = None
-#
-#     return render(request, 'product.html', {'data': data, 'category': category, 'categories':categories})
-
-# def products(request, category_id=None):
-#     username=request.session.get('user')
-#     if not username:
-#         return redirect('login')
-#     categories = Category.objects.all()
-#     query = request.GET.get('q')
-#     data=product.objects.all()
-#     category = None
-#
-#     if category_id:
-#         category = Category.objects.filter(id=category_id).first()
-#         if category:
-#             data=data.filter(category=category)
-#         else:
-#             sub=SubCategory.objects.filter(id=category_id).first()
-#             if sub:
-#                 data.filter(subcategory=sub)
-#
-#
-#     if query:
-#         data=data.filter(Q(product_name__icontains=query) |
-#     Q(description__icontains=query) | Q(product_price__icontains=query))
-#     return render(request, 'product.html', {
-#         'data': data,
-#         'category': category,
-#         'categories': categories,
-#         'query': query
-#     })
-
 from django.db.models import Q, F
 from django.shortcuts import render, redirect
 
@@ -371,26 +242,29 @@ def products(request, category_id=None):
     username = request.session.get('user')
     if not username:
         return redirect('login')
-
+    user = signup.objects.get(username=username)
     categories = Category.objects.all()
     query = request.GET.get('q')
     data = product.objects.all()
     category = None
-
-
     if request.method == "POST":
         product_id = request.POST.get('product_id')
         qty = int(request.POST.get('quantity', 1))
 
         if product_id:
-            updated = product.objects.filter(
-                id=product_id,
-                product_quantity__gte=qty
-            ).update(
-                product_quantity=F('product_quantity') - qty
-            )
+            prod = product.objects.get(id=product_id)
 
-            if updated:
+            if prod.product_quantity >= qty:
+                cart_item, created = cart.objects.get_or_create(
+                    user_details=user,
+                    product_details=prod,
+                    defaults={'quantity': qty}
+                )
+
+                if not created:
+                    cart_item.quantity += qty
+                    cart_item.save()
+
                 return redirect(request.path)
             else:
                 return render(request, 'product.html', {
@@ -398,6 +272,7 @@ def products(request, category_id=None):
                     'categories': categories,
                     'error': "Not enough stock"
                 })
+
 
 
     if category_id:
@@ -423,18 +298,26 @@ def products(request, category_id=None):
         'query': query
     })
 
+# def search(request):
+#     query = request.GET.get('q')
+#     results = product.objects.filter(product_name__icontains=query)
+#     return render(request, 'search.html', {'results': results})
+
 def search(request):
     query = request.GET.get('q')
-    results = product.objects.filter(product_name__icontains=query)
-    return render(request, 'search.html', {'results': results})
 
 
-# def product_detail(request, pk):
-#     item = get_object_or_404(product, pk=pk)
-#     return render(request, 'product_detail.html', {'item': item})
+    if not query:
+        return redirect('all_products')
 
+    results = product.objects.filter(
+        product_name__icontains=query
+    )
 
-
+    return render(request, 'product.html', {
+        'data': results,
+        'query': query
+    })
 
 
 def product_detail(request, pk):
@@ -497,22 +380,6 @@ def sub_category(request):
     categories = Category.objects.all()
     subcategories = SubCategory.objects.all()
     return render(request, 'Sub_category.html', {'n': n, 'categories': categories,'sub_categories': subcategories})
-
-# def sub_sub_category(request):
-#     if request.method == 'POST':
-#         m=sub_sub_categoryForm(request.POST)
-#         if m.is_valid():
-#             name = m.cleaned_data['name']
-#             if Subsubcategory.category.filter(name=name, subcategory=n.cleaned_data['subcategory']):
-#                 return  HttpResponse("Subsubcategory already exists!")
-#             else:
-#                 m.save()
-#     else:
-#         m=sub_sub_categoryForm()
-#     categories = Category.objects.all()
-#     subcategories = SubCategory.objects.all()
-#     subsubcategories = Subsubcategory.objects.all()
-#     return render(request, 'sub_sub_category.html', {'m': m, 'categories': categories, 'sub_categories':subcategories, 'sub_sub_category': subsubcategories})
 
 def sub_sub_category(request, d):
     admin = request.session.get('admin')
@@ -603,23 +470,6 @@ def delete(request, d):
     return redirect(Manage_Product)
 
 
-# def add_cart(request, d):
-#     if 'user' in request.session:
-#         prod=product.objects.get(pk=d)
-#         u=signup.objects.get(username=request.session['user'])
-#         if cart.objects.filter(product_details=prod).exists():
-#             p=cart.objects.get(product_details=prod)
-#             p.quantity+=1
-#             p.total_price = p.product_details.product_price * p.quantity
-#             p.save()
-#             return redirect(view_cart)
-#         else:
-#             cart.objects.create(product_details=prod, user_details=u, total_price=prod.product_price).save()
-#             return redirect(view_cart)
-#     else:
-#         return redirect(view_cart)
-
-
 def add_cart(request, d):
     if 'user' not in request.session:
         return redirect(login)
@@ -644,23 +494,6 @@ def add_cart(request, d):
     return redirect(view_cart)
 
 
-# def view_cart(request):
-#     print("view_cart")
-#     user = request.session.get('user')
-#     if not user:
-#         return redirect(login)
-#
-#     u=signup.objects.get(username=request.session['user'])
-#     data=cart.objects.filter(user_details=u)
-#     print(data)
-#     total=0
-#     total_quantity=0
-#     for i in data:
-#         if i.product_details.product_quantity < i.quantity:
-#             return HttpResponse("Not enough stock")
-#         total_quantity += i.quantity
-#         total += i.total_price
-#     return render(request,'cart.html',{'data':data, 'total':total, 'total_quantity':total_quantity})
 
 def view_cart(request):
     user = request.session.get('user')
@@ -693,27 +526,6 @@ def view_cart(request):
     })
 
 
-    for i in data:
-        a = i.product_details
-
-        if a.product_quantity < i.quantity:
-            return HttpResponse("Not enough stock")
-
-        a.product_quantity -= i.product_quantity
-        print(a.product_quantity)
-        a.save()
-
-
-
-# def decrement(request, d):
-#     p=cart.objects.get(pk=d)
-#     p.quantity-=1
-#     if p.quantity < 1:
-#         p.delete()
-#     else:
-#         p.total_price = p.product_details.product_price * p.quantity
-#         p.save()
-#     return redirect(view_cart)
 
 
 def decrement(request, d):
@@ -734,18 +546,8 @@ def increment(request,d):
     p.save()
     return redirect(view_cart)
 
-# def payment(request, d):
-#     amount = d*100
-#     order_currency = 'INR'
-#     client = razorpay.Client(
-#     auth=("rzp_test_SROSnyInFv81S4", "WIWYANkTTLg7iGbFgEbwj4BM"))
-#     # cursor = connection.cursor()
-#     # cursor.execute("update inspection_details set status='completed', fine_paid_date = curdate() where insp_id='" + str(id) + "' ")
-#     payment = client.order.create({'amount': amount, 'currency': 'INR', 'payment_capture': '1'})
-#     return render(request, "payment.html",{'amount':amount,'d':d, 'order': order,
-#     'user': user})
 def payment(request, d):
-    amount = int(d) * 100  # convert to paise
+    amount = int(d) * 100
 
     client = razorpay.Client(
         auth=("rzp_test_SROSnyInFv81S4", "WIWYANkTTLg7iGbFgEbwj4BM")
@@ -767,52 +569,6 @@ def payment(request, d):
         'order': order,
         'user': user
     })
-
-# def address(request):
-#
-#     user=signup.objects.get(username=request.session['user'])
-#     if request.method=='POST':
-#        a=request.POST['n1']
-#        b=request.POST['n2']
-#        c=request.POST['n3']
-#        d=request.POST['n4']
-#        e=request.POST['n5']
-#        f=request.POST['n6']
-#        g=request.POST['n7']
-#        a(username=a,phone=b,email=c,pin=d,state=e,city=f,building_name=f,road_name=g).save()
-#        messages.success(request, 'Address Added successfully')
-#        return redirect(order_sum)
-#     return render(request, 'address.html', {'user': user})
-
-
-
-
-# def address(request):
-#     user = signup.objects.get(username=request.session['user'])
-#     if not user:
-#         return redirect(login)
-#     if request.method == 'POST':
-#         x=request.POST['x1']
-#         y=request.POST['x2']
-#         z=request.POST['x3']
-#         a = request.POST['x4']
-#         b = request.POST['x5']
-#         c = request.POST['x6']
-#         d = request.POST['x7']
-#         e = request.POST['x8']
-#         user.name=x
-#         user.email=y
-#         user.phone=z
-#         user.pincode=a
-#         user.state=b
-#         user.city=c
-#         user.building_name=d
-#         user.road_name=e
-#         user.save()
-#         messages.success(request,'Address Added successfully')
-#         return redirect('login')
-#     re
-#     turn render(request,'address.html',{'user':user})
 
 def address(request):
     try:
@@ -851,46 +607,6 @@ def order_sum(request):
     return render(request, 'order_summary.html', {'data': data, 'total': total, 'quantity': quantity,'user':user })
 
 
-# def order(request):
-#     username = request.session.get('user')
-#
-#     if not username:
-#         return redirect(login)  # prevent crash
-#
-#     user = signup.objects.get(username=username)
-#     data = cart.objects.filter(user_details=user)
-#     import datetime
-#     import datetime
-#     d = datetime.datetime.now()
-#     for i in data:
-#         a = i.product_details
-#         a.quantity=a.product_quantity-i.quantity
-#         print(a.quantity)
-#         a.save()
-#         orders.objects.create(user_details=user,product_details=a,quantity=i.quantity,amount=i.total_price,order_date=d).save()
-#     data.delete()
-#     return render(request,"success.html")
-
-# def order(request):
-#     username = request.session.get('user')
-#
-#     if not username:
-#         return redirect(login)
-#
-#     user = signup.objects.get(username=username)
-#     data = cart.objects.filter(user_details=user)
-#
-#     from django.utils import timezone
-#     d = timezone.now()
-#
-#
-#
-#     orders.objects.create(user_details=user,product_details=i.product,quantity=i.product_quantity,amount=i.total_price,order_date=d)
-#
-#     data.delete()
-#
-#     return render(request, "success.html")
-#
 
 def profile(request):
     data = delivery_boy_register.objects.get(username=request.session['delivery'])
@@ -898,8 +614,9 @@ def profile(request):
 
 
 
-def order(request):
 
+
+def order(request):
     username = request.session.get('user')
     if not username:
         return redirect('login')
@@ -912,25 +629,37 @@ def order(request):
 
     current_time = timezone.now()
 
+    with transaction.atomic():
+        for item in cart_items:
+            updated = product.objects.filter(
+                id=item.product_details.id,
+                product_quantity__gte=item.quantity
+            ).update(
+                product_quantity=F('product_quantity') - item.quantity
+            )
+            print("Updated:", updated)
+            if not updated:
+                return HttpResponse(
+                    f"Not enough stock for {item.product_details.product_name}"
+                )
 
-    order_list = [
-        orders(
-            user_details=user,
-            product_details=item.product_details,
-            quantity=item.quantity,
-            amount=item.total_price,
-            order_date=current_time
-        )
-        for item in cart_items
-    ]
+        order_list = [
+            orders(
+                user_details=user,
+                product_details=item.product_details,
+                quantity=item.quantity,
+                amount=item.total_price,
+                order_date=current_time
+            )
+            for item in cart_items
+        ]
+
+        orders.objects.bulk_create(order_list)
 
 
-    orders.objects.bulk_create(order_list)
-    cart_items.delete()
+        cart_items.delete()
 
     return render(request, "success.html")
-
-
 
 
 def myorder(request):
@@ -1068,20 +797,6 @@ def delivery_order(request):
 
 
 
-#
-# def category_products(request, id):
-#
-#     category = get_object_or_404(Category, id=id)
-#
-#
-#     products = product.objects.filter(category=category)
-#
-#     context = {
-#         'category': category,
-#         'products': products
-#     }
-#     return render(request, 'product.html', context)
-
 
 
 def rem(request,d):
@@ -1182,7 +897,6 @@ def reset_password(request, token):
             print("PASSWORD MISMATCH")
             return HttpResponse("Passwords do not match")
 
-        # ✅ SAVE PASSWORD (your model = plain text)
         user.password = new_password
         user.save()
 
@@ -1193,38 +907,60 @@ def reset_password(request, token):
     return render(request, 'reset.html')
 
 
-# def reset_password(request, token):
-#     try:
-#         password_reset = PasswordReset.objects.get(token=token)
-#         user = password_reset.user_details
-#     except PasswordReset.DoesNotExist:
-#         return redirect('forgot_password')
-#
-#     if request.method == 'POST':
-#         new_password = request.POST.get('newpassword')
-#         repeat_password = request.POST.get('cpassword')
-#
-#         if new_password != repeat_password:
-#             return HttpResponse("Passwords do not match")
-#
-#         # ✅ FIX HERE
-#         user.password = new_password
-#         user.save()
-#
-#         return redirect('login')
-#
-#     return render(request, 'reset.html')
+from django.db import transaction
+from django.db.models import F
+from django.utils import timezone
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 
-# def reset_password(request,token):
-#     print(token)
-#     password_reset = PasswordReset.objects.get(token=token)
-#     if request.method == 'POST':
-#         new_password = request.POST.get('newpassword')
-#         repeat_password = request.POST.get('cpassword')
-#         if repeat_password == new_password:
-#
-#             return redirect(login)
-#     return render(request, 'reset.html', {'token': token})
+def cod_success(request):
+    username = request.session.get('user')
+
+    if not username:
+        return redirect('login')
+
+    user = signup.objects.get(username=username)
+    cart_items = cart.objects.filter(user_details=user)
+
+    if not cart_items.exists():
+        return redirect('viewcart')
+
+    current_time = timezone.now()
+
+    with transaction.atomic():
+        for item in cart_items:
+            updated = product.objects.filter(
+                id=item.product_details.id,
+                product_quantity__gte=item.quantity
+            ).update(
+                product_quantity=F('product_quantity') - item.quantity
+            )
+
+            print("COD Updated:", updated)  # debug
+
+            if not updated:
+                return HttpResponse(
+                    f"Not enough stock for {item.product_details.product_name}"
+                )
+
+
+        order_list = [
+            orders(
+                user_details=user,
+                product_details=item.product_details,
+                quantity=item.quantity,
+                amount=item.total_price,
+                order_date=current_time
+            )
+            for item in cart_items
+        ]
+
+        orders.objects.bulk_create(order_list)
+
+
+        cart_items.delete()
+
+    return render(request, "success.html", {"payment_id": "COD"})
 def alert(request):
     low_stock_products = product.objects.filter(product_quantity__lt=5)
     return render(request, "alert.html", {'low_stock_products':low_stock_products})
