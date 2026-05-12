@@ -141,3 +141,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'monicaaparnesh@gmail.com'
 EMAIL_HOST_PASSWORD ='cmpd pnlc mvru ftdp'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
