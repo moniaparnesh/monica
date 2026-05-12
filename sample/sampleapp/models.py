@@ -38,7 +38,7 @@ class Subsubcategory(models.Model):
 class HairType(models.Model):
     name = models.CharField(max_length=50)
 
-class HairColor(models.Model):
+class Color(models.Model):
     name = models.CharField(max_length=50)
 
 class product(models.Model):
@@ -50,7 +50,8 @@ class product(models.Model):
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     sub_sub_category = models.ForeignKey(Subsubcategory, on_delete=models.CASCADE, null=True, blank=True)
     hair_type = models.CharField(max_length=50, blank=True, null=True)
-    hair_color = models.CharField(max_length=50, blank=True, null=True)
+    color = models.CharField(max_length=50, blank=True, null=True)
+    skin_type=models.CharField(max_length=50, blank=True, null=True)
     description = models.CharField(max_length=200, blank=True, null=True)
 
     def stock_status(self):
