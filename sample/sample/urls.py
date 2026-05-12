@@ -19,6 +19,8 @@ from django.urls import path
 from sampleapp import views
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+
 
 urlpatterns = [
     path('signup/', admin.site.urls),
@@ -27,7 +29,7 @@ path('', views.index, name='collection'),
 path('register/', views.users),
 path('login/', views.login, name='login'),
 path('adminhome/', views.adminhome),
-path('userhome/', views.user),
+path('userhome/', views.user, name='userhome'),
 path('Add_Product/', views.Add_Product, name="Add_Product"),
 path('cart/<int:d>/', views.add_cart, name='add_cart'),
 path('viewcart/', views.view_cart, name='viewcart'),
@@ -49,7 +51,7 @@ path('cod-success/', views.cod_success, name='cod_success'),
 path('address/', views.address),
 path('order_summary', views.order_sum),
 path('success', views.order),
-path('myorders', views.myorder),
+path('myorders', views.myorder, name='myorder'),
 path('rem/<int:d>/',views.rem),
 path('wishlist/remo/<int:d>/', views.remo, name='remove_wishlist'),
 path('wishlist/add/<int:d>/', views.wish, name='add_wishlist'),
@@ -82,6 +84,10 @@ path('delivery_orders',views.delivery_order),
 path('forgot/', views.forgot_password, name='forgot_password'),
     path('delivered/<int:a>',views.delivered),
 path('reset/<str:token>/', views.reset_password, name='reset'),
+path('api/products/', views.product_api),
+path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
 
 if settings.DEBUG:
