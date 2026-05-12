@@ -1,4 +1,6 @@
 from http.cookiejar import debug
+from pydoc import describe
+
 from django.utils import timezone
 from django.shortcuts import render, redirect, get_object_or_404
 from unicodedata import category
@@ -13,7 +15,7 @@ from django.db.models import Sum, Q
 import razorpay
 from django.contrib import messages
 from django.db.models import F
-
+from django.contrib.auth.hashers import make_password, check_password
 
 
 def index(request):
@@ -40,7 +42,7 @@ def users(request):
         if signup.objects.filter(username=d).exists():
            return HttpResponse("Username already exists")
         if e==f:
-           signup.objects.create(name=a,phone=b,email=c,username=d,password=e).save()
+           signup.objects.create(name=a,phone=b,email=c,username=d,password=make_password(e)).save()
            return HttpResponse('Saved')
         else:
            return HttpResponse('Passwords do not match')
@@ -55,7 +57,7 @@ def login(request):
         password = request.POST['n5']
         try:
             data=signup.objects.get(username=username)
-            if data.password == password:
+            if check_password (password, data.password):
                 request.session['user']=username
                 return redirect(user)
             else:
@@ -76,7 +78,7 @@ def delivery_login(request):
         a = request.POST['n1']
         b = request.POST['n2']
         data=signup.objects.get(username=a)
-        if data.password==b:
+        if check_password(b, data.password):
             if data.status == 'Accepted':
                 request.session['delivery']=a
                 messages.success(request,'Login success')
@@ -94,7 +96,7 @@ def logout(request):
     if 'user' in request.session or 'admin' in request.session  or 'delivery' in request.session:
         request.session.flush()
 
-        return redirect(login)
+    return redirect('login')
 
 
 def adminhome(request):
@@ -155,7 +157,7 @@ def Add_Product(request):
             product_quantity = p.cleaned_data['product_quantity']
             product_image = p.cleaned_data['product_image']
             hair_type = p.cleaned_data.get('hair_type')
-            hair_color = p.cleaned_data.get('hair_color')
+            color = p.cleaned_data.get('color')
             description = p.cleaned_data.get('description')
 
 
@@ -189,7 +191,7 @@ def Add_Product(request):
                 sub_category=subcategory_obj,
                 sub_sub_category=subsubcategory_obj,
                 hair_type=hair_type,
-                hair_color=hair_color,
+                color=color,
                 description=description
             )
             return HttpResponse("Product saved successfully!")
@@ -245,6 +247,13 @@ def products(request, category_id=None):
     user = signup.objects.get(username=username)
     categories = Category.objects.all()
     query = request.GET.get('q')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    sort = request.GET.get('sort')
+    colors=request.GET.get('color')
+    hair_type = request.GET.get('hair_type')
+    skin_type=request.GET.get('skin_type')
+
     data = product.objects.all()
     category = None
     if request.method == "POST":
@@ -282,7 +291,7 @@ def products(request, category_id=None):
         else:
             sub = SubCategory.objects.filter(id=category_id).first()
             if sub:
-                data = data.filter(subcategory=sub)
+                data = data.filter(sub_category=sub)
 
 
     if query:
@@ -290,12 +299,32 @@ def products(request, category_id=None):
             Q(product_name__icontains=query) |
             Q(description__icontains=query)
         )
-
+    if hair_type:
+        data=data.filter(hair_type=hair_type)
+    if skin_type:
+        data=data.filter(skin_type=skin_type)
+    if min_price:
+        data=data.filter(product_price__gte=min_price)
+    if max_price:
+        data=data.filter(product_price__lte=max_price)
+    if sort=='low_to_high':
+        data=data.order_by('product_price')
+    elif sort=='high_to_low':
+        data=data.order_by('-product_price')
+    elif sort=='new_arrival':
+        data=data.order_by('-id')
+    if colors:
+        data = data.filter(color__icontains=colors)
     return render(request, 'product.html', {
         'data': data,
         'category': category,
         'categories': categories,
-        'query': query
+        'query': query,
+        'min_price':min_price,
+        'max_price':max_price,
+        'sort':sort,
+        'colors': colors,
+
     })
 
 # def search(request):
@@ -541,9 +570,10 @@ def decrement(request, d):
 
 def increment(request,d):
     p=cart.objects.get(pk=d)
-    p.quantity+=1
-    p.total_price = p.product_details.product_price * p.quantity
-    p.save()
+    if p.quantity<p.product_details.product_quantity:
+        p.quantity+=1
+        p.total_price = p.product_details.product_price * p.quantity
+        p.save()
     return redirect(view_cart)
 
 def payment(request, d):
@@ -703,28 +733,28 @@ def delivery_reg(request):
         elif delivery_boy_register.objects.filter(email=b).exists():
             return HttpResponse('Email Already Exist')
         else:
-            delivery_boy_register.objects.create(name=a, email=b, phone=c, driving_license_no=d, username=e, password=f).save()
+            delivery_boy_register.objects.create(name=a, email=b, phone=c, driving_license_no=d, username=e, password=make_password(f)).save()
             return HttpResponse('Register Successfully')
             return render(request,'delivery_boy_register.html')
     return render(request,'delivery_boy_register.html')
 
-def delivery_login(request):
-    if request.method =='POST':
-        a = request.POST['z5']
-        b = request.POST['z6']
-        data=delivery_boy_register.objects.get(username=a)
-        if data.password==b:
-            if data.status == 'Accepted':
-                request.session['delivery']=a
-                return redirect(delivery_home)
-
-            else:
-                return HttpResponse(request,'Request Pending')
-
-        else:
-            return HttpResponse('Incorect password')
-
-    return render(request, 'delivery_boy_login.html')
+# def delivery_login(request):
+#     if request.method =='POST':
+#         a = request.POST['z5']
+#         b = request.POST['z6']
+#         data=delivery_boy_register.objects.get(username=a)
+#         if data.password==b:
+#             if data.status == 'Accepted':
+#                 request.session['delivery']=a
+#                 return redirect(delivery_home)
+#
+#             else:
+#                 return HttpResponse(request,'Request Pending')
+#
+#         else:
+#             return HttpResponse('Incorect password')
+#
+#     return render(request, 'delivery_boy_login.html')
 
 def delivery_home(request):
 
@@ -802,7 +832,7 @@ def delivery_order(request):
 def rem(request,d):
     data=cart.objects.get(pk=d)
     data.delete()
-    return redirect(cart_view)
+    return redirect(view_cart)
 
 
 # def remo(request,d):
@@ -845,7 +875,7 @@ def forgot_password(request):
 
         user = users.first()
 
-        token = get_random_string(length=32)   # ✅ strong token
+        token = get_random_string(length=32)
 
         PasswordReset.objects.create(user_details=user, token=token)
 
@@ -855,15 +885,15 @@ def forgot_password(request):
             send_mail(
                 'Reset Your Password',
                 f'Click the link to reset your password: {reset_link}',
-                settings.EMAIL_HOST_USER,   # ✅ FIXED
-                [user.email],               # better than [email]
+                settings.EMAIL_HOST_USER,
+                [user.email],
                 fail_silently=False
             )
         except Exception as e:
             print("EMAIL ERROR:", e)
             messages.info(request, f"Error: {e}")
             return redirect('forgot_password')
-            return redirect('forgot_password')
+
 
         messages.success(request, "Reset link sent successfully")
 
@@ -897,7 +927,7 @@ def reset_password(request, token):
             print("PASSWORD MISMATCH")
             return HttpResponse("Passwords do not match")
 
-        user.password = new_password
+        user.password = make_password(new_password)
         user.save()
 
         print("PASSWORD SAVED IN DATABASE")
@@ -963,4 +993,104 @@ def cod_success(request):
     return render(request, "success.html", {"payment_id": "COD"})
 def alert(request):
     low_stock_products = product.objects.filter(product_quantity__lt=5)
-    return render(request, "alert.html", {'low_stock_products':low_stock_products})
+    out_of_stock=product.objects.filter(product_quantity=0)
+    return render(request, "alert.html", {'low_stock_products':low_stock_products, 'out_of_stock':out_of_stock})
+
+
+
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import product
+from .serializer import ProductSerializer
+
+@api_view(['GET'])
+def product_api(request):
+    data = product.objects.all()
+    serializer = ProductSerializer(data, many=True)
+    return Response(serializer.data)
+
+
+
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class ProductListAPI(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return Response({"message": "Only logged-in user can see this"})
+
+
+
+@api_view(['POST'])
+def add_to_cart_api(request):
+    username = request.session.get('user')
+    if not username:
+        return Response({"error": "Login required"}, status=401)
+
+    try:
+        user = Signup.objects.get(username=username)
+    except Signup.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+
+    product_id = request.data.get('product_id')
+    quantity = int(request.data.get('quantity', 1))
+
+    try:
+        prod = product.objects.get(id=product_id)
+    except product.DoesNotExist:
+        return Response({"error": "Product not found"}, status=404)
+
+    if prod.product_quantity < quantity:
+        return Response({"error": "Not enough stock"}, status=400)
+
+    item, created = cart.objects.get_or_create(
+        product_details=prod,
+        user_details=user,
+        defaults={
+            'quantity': quantity,
+            'total_price': prod.product_price * quantity
+        }
+    )
+
+    if not created:
+        new_quantity = item.quantity + quantity
+
+        if prod.product_quantity < new_quantity:
+            return Response({"error": "Not enough stock"}, status=400)
+
+        item.quantity = new_quantity
+        item.total_price = item.quantity * prod.product_price
+        item.save()
+
+    return Response({"message": "Added to cart"}, status=201)
+
+
+
+@api_view(['POST'])
+def login_api(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    if not username or not password:
+        return Response({"error": "Username and password required"}, status=400)
+
+    try:
+        user = Signup.objects.get(username=username)
+    except Signup.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
+
+    if check_password(password, user.password):
+        request.session['user'] = username
+        return Response({"message": "Login successful"}, status=200)
+
+    return Response({"error": "Invalid password"}, status=400)
+
+
+
+
+
+
+
+
