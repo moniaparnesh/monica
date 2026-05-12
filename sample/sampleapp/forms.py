@@ -29,5 +29,5 @@ class normal(forms.Form):
     product_quantity = forms.IntegerField()
     product_image = forms.ImageField()
     hair_type = forms.CharField(max_length=50, required=False)
-    hair_color = forms.CharField(max_length=50, required=False)
+    color = forms.CharField(max_length=50, required=False)
     description = forms.CharField(max_length=200, required=False)
