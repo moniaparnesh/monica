@@ -151,7 +151,7 @@
     </defs>
   </svg>
 
-  <!-- <div class="preloader text-white fs-6 text-uppercase overflow-hidden"></div> -->
+<!--  <div class="preloader text-white fs-6 text-uppercase overflow-hidden"></div>-->
 
   <div class="search-popup">
     <div class="search-popup-container">
@@ -434,7 +434,7 @@
                        {% endif %}
                     {% endfor %}
                 </div>
-<!--                <div class="banner-content py-4">-->
+<!--                <div class="banner-content py\-4">-->
 <!--                  <h5 class="element-title text-uppercase">-->
 <!--                    <a href="index.html" class="item-anchor">Soft leather jackets</a>-->
 <!--                  </h5>-->
@@ -467,11 +467,11 @@
             <div class="swiper-slide">
               <div class="banner-item image-zoom-effect">
                 <div class="image-holder">
-                   {% for sub in sub_categories %}
-                       {% if sub.name|lower == "shampoo" %}
-                  <a href="{% url 'subcategory_products' sub.id %}">
-                    <img src="{% static 'images/sham.jpg' %}" alt="product" class="img-fluid">
-                  </a>
+                   {% for i in subsubcategories %}
+                       {% if i.name|lower == "kajal" %}
+                  <a href="{% url 'product_by_subsub' i.id %}">
+                     <img src="{% static 'images/banner-image-212.jpg' %}" alt="categories" class="product-image img-fluid">
+                </a>
                        {% endif %}
                     {% endfor %}
                 </div>
@@ -584,7 +584,6 @@
                        {% endif %}
                     {% endfor %}
 
-              </div>
               <div class="category-content">
                 <div class="product-button">
                   {% for sub in sub_categories %}
@@ -900,68 +899,7 @@
     </div>
   </section>
 
-  <section class="video py-5 overflow-hidden">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="video-content open-up" data-aos="zoom-out">
-          <div class="video-bg">
-            <img src="{% static 'images/video-image.jpg' %}" alt="video" class="video-image img-fluid">
-          </div>
-          <div class="video-player">
-            <a class="youtube" href="https://www.youtube.com/embed/pjtsGzQjFM4">
-              <svg width="24" height="24" viewBox="0 0 24 24">
-                <use xlink:href="#play"></use>
-              </svg>
-              <img src="{% static 'images/text-pattern.png' %}" alt="pattern" class="text-rotate">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <section class="testimonials py-5 bg-light">
-    <div class="section-header text-center mt-5">
-      <h3 class="section-title">WE LOVE GOOD COMPLIMENT</h3>
-    </div>
-    <div class="swiper testimonial-swiper overflow-hidden my-5">
-      <div class="swiper-wrapper d-flex">
-        <div class="swiper-slide">
-          <div class="testimonial-item text-center">
-            <blockquote>
-              <p>“More than expected crazy soft, flexible and best fitted white simple denim shirt.”</p>
-              <div class="review-title text-uppercase">casual way</div>
-            </blockquote>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="testimonial-item text-center">
-            <blockquote>
-              <p>“Best fitted white denim shirt more than expected crazy soft, flexible</p>
-              <div class="review-title text-uppercase">uptop</div>
-            </blockquote>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="testimonial-item text-center">
-            <blockquote>
-              <p>“Best fitted white denim shirt more white denim than expected flexible crazy soft.”</p>
-              <div class="review-title text-uppercase">Denim craze</div>
-            </blockquote>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <div class="testimonial-item text-center">
-            <blockquote>
-              <p>“Best fitted white denim shirt more than expected crazy soft, flexible</p>
-              <div class="review-title text-uppercase">uptop</div>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-swiper-pagination d-flex justify-content-center mb-5"></div>
-  </section>
 
   <section id="related-products" class="related-products product-carousel py-5 position-relative overflow-hidden">
     <div class="container">
@@ -1186,193 +1124,9 @@
     </div>
   </section>
 
-  <section class="instagram position-relative">
-    <div class="d-flex justify-content-center w-100 position-absolute bottom-0 z-1">
-      <a href="https://www.instagram.com/templatesjungle/" class="btn btn-dark px-5">Follow us on Instagram</a>
-    </div>
-    <div class="row g-0">
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="insta-item">
-          <a href="https://www.instagram.com/templatesjungle/" target="_blank">
-            <img src="images/insta-item1.jpg" alt="instagram" class="insta-image img-fluid">
-          </a>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="insta-item">
-          <a href="https://www.instagram.com/templatesjungle/" target="_blank">
-            <img src="images/insta-item2.jpg" alt="instagram" class="insta-image img-fluid">
-          </a>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="insta-item">
-          <a href="https://www.instagram.com/templatesjungle/" target="_blank">
-            <img src="images/insta-item3.jpg" alt="instagram" class="insta-image img-fluid">
-          </a>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="insta-item">
-          <a href="https://www.instagram.com/templatesjungle/" target="_blank">
-            <img src="images/insta-item4.jpg" alt="instagram" class="insta-image img-fluid">
-          </a>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="insta-item">
-          <a href="https://www.instagram.com/templatesjungle/" target="_blank">
-            <img src="images/insta-item5.jpg" alt="instagram" class="insta-image img-fluid">
-          </a>
-        </div>
-      </div>
-      <div class="col-6 col-sm-4 col-md-2">
-        <div class="insta-item">
-          <a href="https://www.instagram.com/templatesjungle/" target="_blank">
-            <img src="images/insta-item6.jpg" alt="instagram" class="insta-image img-fluid">
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <footer id="footer" class="mt-5">
-    <div class="container">
-      <div class="row d-flex flex-wrap justify-content-between py-5">
-        <div class="col-md-3 col-sm-6">
-          <div class="footer-menu footer-menu-001">
-            <div class="footer-intro mb-4">
-              <a href="index.html">
-                <img src="images/main-logo.png" alt="logo">
-              </a>
-            </div>
-            <p>Gravida massa volutpat aenean odio. Amet, turpis erat nullam fringilla elementum diam in. Nisi, purus
-              vitae, ultrices nunc. Sit ac sit suscipit hendrerit.</p>
-            <div class="social-links">
-              <ul class="list-unstyled d-flex flex-wrap gap-3">
-                <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#facebook"></use>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#twitter"></use>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#youtube"></use>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#pinterest"></use>
-                    </svg>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" class="text-secondary">
-                    <svg width="24" height="24" viewBox="0 0 24 24">
-                      <use xlink:href="#instagram"></use>
-                    </svg>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="footer-menu footer-menu-002">
-            <h5 class="widget-title text-uppercase mb-4">Quick Links</h5>
-            <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
-              <li class="menu-item">
-                <a href="index.html" class="item-anchor">Home</a>
-              </li>
-              <li class="menu-item">
-                <a href="index.html" class="item-anchor">About</a>
-              </li>
-              <li class="menu-item">
-                <a href="blog.html" class="item-anchor">Services</a>
-              </li>
-              <li class="menu-item">
-                <a href="styles.html" class="item-anchor">Single item</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="item-anchor">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="footer-menu footer-menu-003">
-            <h5 class="widget-title text-uppercase mb-4">Help & Info</h5>
-            <ul class="menu-list list-unstyled text-uppercase border-animation-left fs-6">
-              <li class="menu-item">
-                <a href="#" class="item-anchor">Track Your Order</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="item-anchor">Returns + Exchanges</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="item-anchor">Shipping + Delivery</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="item-anchor">Contact Us</a>
-              </li>
-              <li class="menu-item">
-                <a href="#" class="item-anchor">Find us easy</a>
-              </li>
-              <li class="menu-item">
-                <a href="index.html" class="item-anchor">Faqs</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="footer-menu footer-menu-004 border-animation-left">
-            <h5 class="widget-title text-uppercase mb-4">Contact Us</h5>
-            <p>Do you have any questions or suggestions? <a href="mailto:contact@yourcompany.com"
-                class="item-anchor">contact@yourcompany.com</a></p>
-            <p>Do you need support? Give us a call. <a href="tel:+43 720 11 52 78" class="item-anchor">+43 720 11 52
-                78</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="border-top py-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 d-flex flex-wrap">
-            <div class="shipping">
-              <span>We ship with:</span>
-              <img src="images/arct-icon.png" alt="icon">
-              <img src="images/dhl-logo.png" alt="icon">
-            </div>
-            <div class="payment-option">
-              <span>Payment Option:</span>
-              <img src="images/visa-card.png" alt="card">
-              <img src="images/paypal-card.png" alt="card">
-              <img src="images/master-card.png" alt="card">
-            </div>
-          </div>
-          <div class="col-md-6 text-end">
-            <p>© Copyright 2022 Kaira. All rights reserved. Design by <a href="https://templatesjungle.com"
-                target="_blank">TemplatesJungle</a> Distribution By <a href="https://themewagon.com"
-              target="blank">ThemeWagon</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+
+
   <style>
 
 .dropdown-submenu,
