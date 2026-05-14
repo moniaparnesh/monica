@@ -1,829 +1,3 @@
-<!--<!doctype html>-->
-<!--<html class="no-js" lang="zxx">-->
-
-<!--{% load static %}-->
-<!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <meta http-equiv="x-ua-compatible" content="ie=edge">-->
-<!--    <title>Uren - Car Accessories Shop HTML Template</title>-->
-<!--    <meta name="robots" content="noindex, follow" />-->
-<!--    <meta name="description" content="">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
-<!--    &lt;!&ndash; Favicon &ndash;&gt;-->
-<!--    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.ico' %}">-->
-
-<!--    &lt;!&ndash; CSS-->
-<!--	============================================ &ndash;&gt;-->
-
-<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}">-->
-<!--    &lt;!&ndash; Fontawesome &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome.css' %}">-->
-<!--    &lt;!&ndash; Fontawesome Star &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/fontawesome-stars.css' %}">-->
-<!--    &lt;!&ndash; Ion Icon &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/ion-fonts.css' %}">-->
-<!--    &lt;!&ndash; Slick CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/slick.css' %}">-->
-<!--    &lt;!&ndash; Animation &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/animate.css' %}">-->
-<!--    &lt;!&ndash; jQuery Ui &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/jquery-ui.min.css' %]">-->
-<!--    &lt;!&ndash; Lightgallery &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/lightgallery.min.css'%}">-->
-<!--    &lt;!&ndash; Nice Select &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/nice-select.css' %}">-->
-
-<!--    &lt;!&ndash; Vendor & Plugins CSS (Please remove the comment from below vendor.min.css & plugins.min.css for better website load performance and remove css files from the above) &ndash;&gt;-->
-<!--    &lt;!&ndash;-->
-<!--    <script src="assets/js/vendor/vendor.min.js"></script>-->
-<!--    <script src="assets/js/plugins/plugins.min.js"></script>-->
-<!--    &ndash;&gt;-->
-
-<!--    &lt;!&ndash; Main Style CSS (Please use minify version for better website load performance) &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">-->
-<!--    &lt;!&ndash;<link rel="stylesheet" href="assets/css/style.min.css">&ndash;&gt;-->
-
-<!--</head>-->
-
-<!--<body class="template-color-1">-->
-
-
-<!--            <div class="offcanvas-minicart_wrapper" id="miniCart">-->
-<!--                <div class="offcanvas-menu-inner">-->
-<!--                    <a href="#" class="btn-close"><i class="ion-android-close"></i></a>-->
-<!--                    <div class="minicart-content">-->
-<!--                        <div class="minicart-heading">-->
-<!--                            <h4>Shopping Cart</h4>-->
-<!--                        </div>-->
-<!--                        <ul class="minicart-list">-->
-<!--                            <li class="minicart-product">-->
-<!--                                <a class="product-item_remove" href="javascript:void(0)"><i-->
-<!--                                    class="ion-android-close"></i></a>-->
-<!--                                <div class="product-item_img">-->
-<!--                                    <img src="{% static 'assets/images/product/small-size/1.jpg' %}" alt="Uren's Product Image">-->
-<!--                                </div>-->
-<!--                                <div class="product-item_content">-->
-<!--                                    <a class="product-item_title" href="shop-left-sidebar.html">Autem ipsa ad</a>-->
-<!--                                    <span class="product-item_quantity">1 x $145.80</span>-->
-<!--                                </div>-->
-<!--                            </li>-->
-<!--                            <li class="minicart-product">-->
-<!--                                <a class="product-item_remove" href="javascript:void(0)"><i-->
-<!--                                    class="ion-android-close"></i></a>-->
-<!--                                <div class="product-item_img">-->
-<!--                                    <img src="{% static 'assets/images/product/small-size/2.jpg'%}" alt="Uren's Product Image">-->
-<!--                                </div>-->
-<!--                                <div class="product-item_content">-->
-<!--                                    <a class="product-item_title" href="shop-left-sidebar.html">Tenetur illum amet</a>-->
-<!--                                    <span class="product-item_quantity">1 x $150.80</span>-->
-<!--                                </div>-->
-<!--                            </li>-->
-<!--                            <li class="minicart-product">-->
-<!--                                <a class="product-item_remove" href="javascript:void(0)"><i-->
-<!--                                    class="ion-android-close"></i></a>-->
-<!--                                <div class="product-item_img">-->
-<!--                                    <img src="{% static 'assets/images/product/small-size/3.jpg'%}" alt="Uren's Product Image">-->
-<!--                                </div>-->
-<!--                                <div class="product-item_content">-->
-<!--                                    <a class="product-item_title" href="shop-left-sidebar.html">Non doloremque placeat</a>-->
-<!--                                    <span class="product-item_quantity">1 x $165.80</span>-->
-<!--                                </div>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                    <div class="minicart-item_total">-->
-<!--                        <span>Subtotal</span>-->
-<!--                        <span class="ammount">$462.4‬0</span>-->
-<!--                    </div>-->
-<!--                    <div class="minicart-btn_area">-->
-<!--                        <a href="cart.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Minicart</a>-->
-<!--                    </div>-->
-<!--                    <div class="minicart-btn_area">-->
-<!--                        <a href="checkout.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Checkout</a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="mobile-menu_wrapper" id="mobileMenu">-->
-<!--                <div class="offcanvas-menu-inner">-->
-<!--                    <div class="container">-->
-<!--                        <a href="#" class="btn-close"><i class="ion-android-close"></i></a>-->
-<!--                        <div class="offcanvas-inner_search">-->
-<!--                            <form action="#" class="inner-searchbox">-->
-<!--                                <input type="text" placeholder="Search for item...">-->
-<!--                                <button class="search_btn" type="submit"><i class="ion-ios-search-strong"></i></button>-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                        <nav class="offcanvas-navigation">-->
-<!--                            <ul class="mobile-menu">-->
-<!--                                <li class="menu-item-has-children active"><a href="index.html"><span-->
-<!--                                        class="mm-text">Home</span></a>-->
-<!--                                    <ul class="sub-menu">-->
-<!--                                        <li>-->
-<!--                                            <a href="index.html">-->
-<!--                                                <span class="mm-text">Home One</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="index-2.html">-->
-<!--                                                <span class="mm-text">Home Two</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="index-3.html">-->
-<!--                                                <span class="mm-text">Home Three</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!--                                <li class="menu-item-has-children">-->
-<!--                                    <a href="shop-left-sidebar.html">-->
-<!--                                        <span class="mm-text">Shop</span>-->
-<!--                                    </a>-->
-<!--                                    <ul class="sub-menu">-->
-<!--                                        <li class="menu-item-has-children">-->
-<!--                                            <a href="shop-left-sidebar.html">-->
-<!--                                                <span class="mm-text">Grid View</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="shop-grid-fullwidth.html">-->
-<!--                                                        <span class="mm-text">Column Three</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="shop-4-column.html">-->
-<!--                                                        <span class="mm-text">Column Four</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="shop-left-sidebar.html">-->
-<!--                                                        <span class="mm-text">Left Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="shop-right-sidebar.html">-->
-<!--                                                        <span class="mm-text">Right Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li class="menu-item-has-children">-->
-<!--                                            <a href="shop-list-left-sidebar.html">-->
-<!--                                                <span class="mm-text">Shop List</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="shop-list-fullwidth.html">-->
-<!--                                                        <span class="mm-text">Full Width</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="shop-list-left-sidebar.html">-->
-<!--                                                        <span class="mm-text">Left Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="shop-list-right-sidebar.html">-->
-<!--                                                        <span class="mm-text">Right Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li class="menu-item-has-children">-->
-<!--                                            <a href="single-product-gallery-left.html">-->
-<!--                                                <span class="mm-text">Single Product Style</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-gallery-left.html">-->
-<!--                                                        <span class="mm-text">Gallery Left</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-gallery-right.html">-->
-<!--                                                        <span class="mm-text">Gallery Right</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-tab-style-left.html">-->
-<!--                                                        <span class="mm-text">Tab Style Left</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-tab-style-right.html">-->
-<!--                                                        <span class="mm-text">Tab Style Right</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-sticky-left.html">-->
-<!--                                                        <span class="mm-text">Sticky Left</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-sticky-right.html">-->
-<!--                                                        <span class="mm-text">Sticky Right</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li class="menu-item-has-children">-->
-<!--                                            <a href="single-product.html">-->
-<!--                                                <span class="mm-text">Single Product Type</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product.html">-->
-<!--                                                        <span class="mm-text">Single Product</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-sale.html">-->
-<!--                                                        <span class="mm-text">Single Product Sale</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-group.html">-->
-<!--                                                        <span class="mm-text">Single Product Group</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-variable.html">-->
-<!--                                                        <span class="mm-text">Single Product Variable</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-affiliate.html">-->
-<!--                                                        <span class="mm-text">Single Product Affiliate</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="single-product-slider.html">-->
-<!--                                                        <span class="mm-text">Single Product Slider</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!--                                <li class="menu-item-has-children">-->
-<!--                                    <a href="blog-left-sidebar.html">-->
-<!--                                        <span class="mm-text">Blog</span>-->
-<!--                                    </a>-->
-<!--                                    <ul class="sub-menu">-->
-<!--                                        <li class="menu-item-has-children has-children">-->
-<!--                                            <a href="blog-left-sidebar.html">-->
-<!--                                                <span class="mm-text">Grid View</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-2-column.html">-->
-<!--                                                        <span class="mm-text">Column Two</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-3-column.html">-->
-<!--                                                        <span class="mm-text">Column Three</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-left-sidebar.html">-->
-<!--                                                        <span class="mm-text">Left Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-right-sidebar.html">-->
-<!--                                                        <span class="mm-text">Right Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li class="menu-item-has-children has-children">-->
-<!--                                            <a href="blog-list-left-sidebar.html">-->
-<!--                                                <span class="mm-text">List View</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-list-fullwidth.html">-->
-<!--                                                        <span class="mm-text">List Fullwidth</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-list-left-sidebar.html">-->
-<!--                                                        <span class="mm-text">List Left Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-list-right-sidebar.html">-->
-<!--                                                        <span class="mm-text">List Right Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li class="menu-item-has-children has-children">-->
-<!--                                            <a href="blog-details-left-sidebar.html">-->
-<!--                                                <span class="mm-text">Blog Details</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-details-left-sidebar.html">-->
-<!--                                                        <span class="mm-text">Left Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-details-right-sidebar.html">-->
-<!--                                                        <span class="mm-text">Right Sidebar</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                        <li class="menu-item-has-children has-children">-->
-<!--                                            <a href="blog-gallery-format.html">-->
-<!--                                                <span class="mm-text">Blog Format</span>-->
-<!--                                            </a>-->
-<!--                                            <ul class="sub-menu">-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-gallery-format.html">-->
-<!--                                                        <span class="mm-text">Gallery Format</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-audio-format.html">-->
-<!--                                                        <span class="mm-text">Audio Format</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li>-->
-<!--                                                    <a href="blog-video-format.html">-->
-<!--                                                        <span class="mm-text">Video Format</span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!--                                <li class="menu-item-has-children">-->
-<!--                                    <a href="index.html">-->
-<!--                                        <span class="mm-text">Pages</span>-->
-<!--                                    </a>-->
-<!--                                    <ul class="sub-menu">-->
-<!--                                        <li>-->
-<!--                                            <a href="my-account.html">-->
-<!--                                                <span class="mm-text">My Account</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="login-register.html">-->
-<!--                                                <span class="mm-text">Login | Register</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="wishlist.html">-->
-<!--                                                <span class="mm-text">Wishlist</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="cart.html">-->
-<!--                                                <span class="mm-text">Cart</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="checkout.html">-->
-<!--                                                <span class="mm-text">Checkout</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="compare.html">-->
-<!--                                                <span class="mm-text">Compare</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="faq.html">-->
-<!--                                                <span class="mm-text">FAQ</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="404.html">-->
-<!--                                                <span class="mm-text">Error 404</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </nav>-->
-<!--                        <nav class="offcanvas-navigation user-setting_area">-->
-<!--                            <ul class="mobile-menu">-->
-<!--                                <li class="menu-item-has-children active"><a href="javascript:void(0)"><span-->
-<!--                                        class="mm-text">User-->
-<!--                                        Setting</span></a>-->
-<!--                                    <ul class="sub-menu">-->
-<!--                                        <li>-->
-<!--                                            <a href="my-account.html">-->
-<!--                                                <span class="mm-text">My Account</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="login-register.html">-->
-<!--                                                <span class="mm-text">Login </span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!--                                <li class="menu-item-has-children"><a href="javascript:void(0)"><span-->
-<!--                                        class="mm-text">Currency</span></a>-->
-<!--                                    <ul class="sub-menu">-->
-<!--                                        <li>-->
-<!--                                            <a href="javascript:void(0)">-->
-<!--                                                <span class="mm-text">EUR €</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="javascript:void(0)">-->
-<!--                                                <span class="mm-text">USD $</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!--                                <li class="menu-item-has-children"><a href="javascript:void(0)"><span-->
-<!--                                        class="mm-text">Language</span></a>-->
-<!--                                    <ul class="sub-menu">-->
-<!--                                        <li>-->
-<!--                                            <a href="javascript:void(0)">-->
-<!--                                                <span class="mm-text">English</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="javascript:void(0)">-->
-<!--                                                <span class="mm-text">Français</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="javascript:void(0)">-->
-<!--                                                <span class="mm-text">Romanian</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                        <li>-->
-<!--                                            <a href="javascript:void(0)">-->
-<!--                                                <span class="mm-text">Japanese</span>-->
-<!--                                            </a>-->
-<!--                                        </li>-->
-<!--                                    </ul>-->
-<!--                                </li>-->
-<!--                            </ul>-->
-<!--                        </nav>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </header>-->
-<!--        &lt;!&ndash; Uren's Header Main Area End Here &ndash;&gt;-->
-
-<!--        &lt;!&ndash; Begin Uren's Breadcrumb Area &ndash;&gt;-->
-<!--        <div class="breadcrumb-area">-->
-<!--            <div class="container">-->
-<!--                <div class="breadcrumb-content">-->
-<!--                    <h2>Order Summery</h2>-->
-<!--                    <ul>-->
-<!--                        <li><a href="cart_view">Cart</a></li>-->
-<!--                        <li class="active">Order</li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Uren's Breadcrumb Area End Here &ndash;&gt;-->
-<!--        &lt;!&ndash; Begin Uren's Login Register Area &ndash;&gt;-->
-
-<!--        <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-sm-120 col-md-120 col-lg-12 col-xs-12">-->
-<!--                            <div class="login">-->
-<!--                                <h4 class="login-title"></h4><br>-->
-<!--                                <h5 style="text-decoration: underline;">Products</h5>-->
-<!--                                {% for i in data %}-->
-<!--                                <div class="gallery d-inline-flex" style="float:left;position:relative;">-->
-<!--                                    <div class="container" >-->
-<!--                                        <div class="card" style="width:200px">-->
-
-<!--                                            <div class="card-body">-->
-<!--                                                <img src="{{i.product_details.image.url}}" alt="Card image" width="100" height="100">-->
-<!--                                                <h4 class="card-tittle">{{i.product_details.name}}</h4>-->
-<!--                                                <p class="card-text">Price:{{i.total_price}}</p>-->
-<!--                                                <p class="card-text">Quantity:{{i.quantity}}</p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-
-<!--                                </div>-->
-<!--                                      {% endfor %}-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div><br>-->
-<!--            <div align="left" class="container">-->
-<!--                <h5 style="text-decoration: underline;">Order Summary</h5>-->
-
-<!--                <h6>Deliver To:</h6>-->
-<!--                <p>Name : {{user.name}}</p>-->
-<!--                <p>Phone : {{user.phone}}</p>-->
-<!--                <p>Email : {{user.email}}</p>-->
-<!--                <p>Address:{{user.building_name}}, {{user.road_name}}, {{user.city}}, {{user.pincode}}, {{user.state}}</p>-->
-<!--            </div><br>-->
-<!--<a style="margin-top:-100px;margin-bottom: 300px;margin-right: -450px;margin-left: 900px;" href="payment/{{total}}" class="btn btn-primary">Proceed To Pay</a>-->
-<!--            <div  style="margin-top:-430px;margin-bottom: -300px;margin-right: -400px;margin-left: 900px;">-->
-<!--                <h6 style="text-decoration: underline;"> Price Details</h6>-->
-<!--                <h6>Total items:{{quantity}}</h6>-->
-<!--                <h6>Total Price:{{total}}</h6>-->
-
-<!--            </div>-->
-
-
-
-<!--    &lt;!&ndash; JS-->
-<!--============================================ &ndash;&gt;-->
-
-<!--    &lt;!&ndash; jQuery JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Modernizer JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Popper JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Bootstrap JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>-->
-
-<!--    &lt;!&ndash; Slick Slider JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/slick.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Barrating JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.barrating.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Counterup JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.counterup.js' %}"></script>-->
-<!--    &lt;!&ndash; Nice Select JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.nice-select.js' %}"></script>-->
-<!--    &lt;!&ndash; Sticky Sidebar JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.js' %}"></script>-->
-<!--    &lt;!&ndash; Jquery-ui JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery-ui.min.js' %}"></script>-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.ui.touch-punch.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Lightgallery JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/lightgallery.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Scroll Top JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/scroll-top.js' %}"></script>-->
-<!--    &lt;!&ndash; Theia Sticky Sidebar JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/theia-sticky-sidebar.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Waypoints JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/waypoints.min.js' %}"></script>-->
-<!--    &lt;!&ndash; jQuery Zoom JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.zoom.min.js' %}"></script>-->
-
-<!--    &lt;!&ndash; Vendor & Plugins JS (Please remove the comment from below vendor.min.js & plugins.min.js for better website load performance and remove js files from avobe) &ndash;&gt;-->
-<!--    &lt;!&ndash;-->
-<!--<script src="assets/js/vendor/vendor.min.js"></script>-->
-<!--<script src="assets/js/plugins/plugins.min.js"></script>-->
-<!--&ndash;&gt;-->
-
-<!--    &lt;!&ndash; Main JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/main.js' %}"></script>-->
-
-
-<!--</body>-->
-
-
-<!--</html>-->
-
-
-
-
-
-
-
-
-
-
-
-<!--<!doctype html>-->
-<!--<html class="no-js" lang="zxx">-->
-
-<!--{% load static %}-->
-<!--<head>-->
-<!--    <meta charset="utf-8">-->
-<!--    <meta http-equiv="x-ua-compatible" content="ie=edge">-->
-<!--    <title>Uren - Car Accessories Shop HTML Template</title>-->
-<!--    <meta name="robots" content="noindex, follow" />-->
-<!--    <meta name="description" content="">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
-<!--    &lt;!&ndash; Favicon &ndash;&gt;-->
-<!--    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/images/favicon.ico' %}">-->
-
-<!--    &lt;!&ndash; CSS-->
-<!--	============================================ &ndash;&gt;-->
-
-<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}">-->
-<!--    &lt;!&ndash; Fontawesome &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome.css' %}">-->
-<!--    &lt;!&ndash; Fontawesome Star &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/fontawesome-stars.css' %}">-->
-<!--    &lt;!&ndash; Ion Icon &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/vendor/ion-fonts.css' %}">-->
-<!--    &lt;!&ndash; Slick CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/slick.css' %}">-->
-<!--    &lt;!&ndash; Animation &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/animate.css' %}">-->
-<!--    &lt;!&ndash; jQuery Ui &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/jquery-ui.min.css' %]">-->
-<!--    &lt;!&ndash; Lightgallery &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/lightgallery.min.css'%}">-->
-<!--    &lt;!&ndash; Nice Select &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/plugins/nice-select.css' %}">-->
-
-<!--    &lt;!&ndash; Vendor & Plugins CSS (Please remove the comment from below vendor.min.css & plugins.min.css for better website load performance and remove css files from the above) &ndash;&gt;-->
-<!--    &lt;!&ndash;-->
-<!--    <script src="assets/js/vendor/vendor.min.js"></script>-->
-<!--    <script src="assets/js/plugins/plugins.min.js"></script>-->
-<!--    &ndash;&gt;-->
-
-<!--    &lt;!&ndash; Main Style CSS (Please use minify version for better website load performance) &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="{% static 'assets/css/style.css'%}">-->
-<!--    &lt;!&ndash;<link rel="stylesheet" href="assets/css/style.min.css">&ndash;&gt;-->
-
-<!--</head>-->
-<!--<body class="template-color-1">-->
-<!--<nav class="navbar navbar-expand-lg bg-light text-uppercase fs-6 p-3 border-bottom align-items-center">-->
-<!--    <div class="container-fluid">-->
-<!--      <div class="row justify-content-between align-items-center w-100">-->
-
-<!--        <div class="col-auto">-->
-<!--          <a class="navbar-brand text-white" href="index.html">-->
-<!--            <svg width="112" height="45" viewBox="0 0 112 45" xmlns="http://www.w3.org/2000/svg" fill="#111">-->
-<!--              <path-->
-<!--                d="M2.51367 34.9297C2.58398 34.6836 2.64844 34.3789 2.70703 34.0156C2.77734 33.6523 2.83594 33.2012 2.88281 32.6621C2.92969 32.123 2.96484 31.4844 2.98828 30.7461C3.01172 29.9961 3.02344 29.123 3.02344 28.127V16.6836C3.02344 15.6875 3.01172 14.8203 2.98828 14.082C2.96484 13.332 2.92969 12.6875 2.88281 12.1484C2.83594 11.5977 2.77734 11.1406 2.70703 10.7773C2.64844 10.4141 2.58398 10.1094 2.51367 9.86328V9.79297H6.73242V9.86328C6.66211 10.1094 6.5918 10.4141 6.52148 10.7773C6.46289 11.1406 6.41016 11.5977 6.36328 12.1484C6.32812 12.6875 6.29297 13.332 6.25781 14.082C6.23438 14.8203 6.22266 15.6875 6.22266 16.6836V20.6035L16.4883 12.2188C17.6367 11.2813 18.2109 10.4727 18.2109 9.79297H23.1504V9.86328C22.459 10.0273 21.7559 10.3437 21.041 10.8125C20.3379 11.2695 19.5879 11.832 18.791 12.5L9.7207 20.0938L20.6367 32.082C21.0938 32.5508 21.4805 32.9434 21.7969 33.2598C22.125 33.5645 22.4121 33.8223 22.6582 34.0332C22.9043 34.2324 23.127 34.4023 23.3262 34.543C23.5371 34.6719 23.7539 34.8008 23.9766 34.9297V35H18.8262C18.7793 34.8945 18.6973 34.7598 18.5801 34.5957C18.4746 34.4316 18.3457 34.2617 18.1934 34.0859C18.0527 33.9102 17.8945 33.7285 17.7188 33.541C17.5547 33.3535 17.3965 33.1777 17.2441 33.0137L6.22266 20.9199V28.127C6.22266 29.123 6.23438 29.9961 6.25781 30.7461C6.29297 31.4844 6.32812 32.123 6.36328 32.6621C6.41016 33.2012 6.46289 33.6523 6.52148 34.0156C6.5918 34.3789 6.66211 34.6836 6.73242 34.9297V35H2.51367V34.9297ZM45.3846 35V34.9297C45.408 34.8711 45.4256 34.7832 45.4373 34.666C45.4491 34.5488 45.4549 34.4434 45.4549 34.3496C45.4549 33.9863 45.4022 33.5879 45.2967 33.1543C45.203 32.709 45.0155 32.1582 44.7342 31.502L42.6073 26.7207C41.951 26.6973 41.078 26.6855 39.9881 26.6855C38.8983 26.6855 37.7205 26.6855 36.4549 26.6855C35.5291 26.6855 34.6327 26.6855 33.7655 26.6855C32.91 26.6855 32.1366 26.6973 31.4452 26.7207L29.4237 31.3613C29.2479 31.7949 29.0604 32.2695 28.8612 32.7852C28.662 33.3008 28.5623 33.8223 28.5623 34.3496C28.5623 34.502 28.5741 34.6309 28.5975 34.7363C28.6209 34.8301 28.6444 34.8945 28.6678 34.9297V35H25.0819V34.9297C25.2928 34.707 25.5565 34.3145 25.8729 33.752C26.1893 33.1777 26.535 32.4629 26.91 31.6074L36.9823 9.26562H38.3885L47.9334 30.7461C48.1561 31.25 48.3846 31.7422 48.619 32.2227C48.8651 32.6914 49.0936 33.1133 49.3045 33.4883C49.5155 33.8633 49.703 34.1797 49.867 34.4375C50.0311 34.6953 50.1424 34.8594 50.201 34.9297V35H45.3846ZM33.994 25.1738C34.6737 25.1738 35.3709 25.1738 36.0858 25.1738C36.8006 25.1621 37.4979 25.1562 38.1776 25.1562C38.869 25.1445 39.5311 25.1387 40.1639 25.1387C40.7967 25.127 41.3709 25.1152 41.8866 25.1035L36.9471 13.9414L32.0955 25.1738H33.994ZM54.6989 34.9297C54.7692 34.6836 54.8337 34.3789 54.8923 34.0156C54.9509 33.6523 55.0036 33.2012 55.0505 32.6621C55.0973 32.123 55.1325 31.4844 55.1559 30.7461C55.1794 29.9961 55.1911 29.123 55.1911 28.127V16.6836C55.1911 15.6875 55.1794 14.8203 55.1559 14.082C55.1325 13.332 55.0973 12.6875 55.0505 12.1484C55.0036 11.5977 54.9509 11.1406 54.8923 10.7773C54.8337 10.4141 54.7692 10.1094 54.6989 9.86328V9.79297H58.9001V9.86328C58.8298 10.1094 58.7595 10.4141 58.6891 10.7773C58.6305 11.1406 58.5778 11.5977 58.5309 12.1484C58.4958 12.6875 58.4606 13.332 58.4255 14.082C58.402 14.8203 58.3903 15.6875 58.3903 16.6836V28.127C58.3903 29.123 58.402 29.9961 58.4255 30.7461C58.4606 31.4844 58.4958 32.123 58.5309 32.6621C58.5778 33.2012 58.6305 33.6523 58.6891 34.0156C58.7595 34.3789 58.8298 34.6836 58.9001 34.9297V35H54.6989V34.9297ZM69.9722 28.127C69.9722 29.123 69.9839 29.9961 70.0073 30.7461C70.0425 31.4844 70.0777 32.123 70.1128 32.6621C70.1597 33.2012 70.2124 33.6523 70.271 34.0156C70.3413 34.3789 70.4116 34.6836 70.482 34.9297V35H66.2632V34.9297C66.3335 34.6836 66.398 34.3789 66.4566 34.0156C66.5269 33.6523 66.5796 33.2012 66.6148 32.6621C66.6616 32.123 66.6968 31.4844 66.7202 30.7461C66.7554 30.0078 66.773 29.1348 66.773 28.127V16.6836C66.773 15.6875 66.7554 14.8203 66.7202 14.082C66.6968 13.332 66.6616 12.6875 66.6148 12.1484C66.5796 11.6094 66.5269 11.1582 66.4566 10.7949C66.398 10.4199 66.3335 10.1094 66.2632 9.86328V9.79297L67.0015 9.86328C67.2241 9.88672 67.4702 9.9043 67.7398 9.91602C68.021 9.91602 68.3081 9.91602 68.6011 9.91602C69.0581 9.91602 69.6734 9.86328 70.4468 9.75781C71.232 9.64062 72.228 9.58203 73.4351 9.58203C74.5601 9.58203 75.5972 9.73438 76.5464 10.0391C77.5073 10.3437 78.3394 10.7891 79.0425 11.375C79.7456 11.9609 80.2905 12.6816 80.6773 13.5371C81.0757 14.3809 81.2749 15.3418 81.2749 16.4199C81.2749 17.2637 81.1636 18.0488 80.9409 18.7754C80.73 19.4902 80.4253 20.1406 80.0269 20.7266C79.6402 21.3125 79.1714 21.834 78.6206 22.291C78.0698 22.7363 77.4546 23.1113 76.7749 23.416L82.9448 32.082C83.2495 32.5156 83.5308 32.8906 83.7886 33.207C84.0581 33.5234 84.3101 33.7988 84.5445 34.0332C84.7905 34.2559 85.0249 34.4434 85.2476 34.5957C85.4702 34.7363 85.6987 34.8477 85.9331 34.9297V35H80.853C80.8179 34.7773 80.7007 34.4844 80.5015 34.1211C80.314 33.7461 80.0913 33.377 79.8335 33.0137L73.6109 24.2422C73.3413 24.2656 73.0718 24.2891 72.8023 24.3125C72.5327 24.3242 72.2573 24.3301 71.9761 24.3301C71.648 24.3301 71.314 24.3184 70.9741 24.2949C70.646 24.2715 70.312 24.2305 69.9722 24.1719V28.127ZM69.9722 22.8008C70.2886 22.8711 70.6109 22.9238 70.939 22.959C71.2671 22.9824 71.5835 22.9941 71.8882 22.9941C72.7671 22.9941 73.5698 22.8652 74.2964 22.6074C75.023 22.3379 75.6382 21.9336 76.1421 21.3945C76.6577 20.8555 77.0562 20.1875 77.3374 19.3906C77.6187 18.582 77.7593 17.6387 77.7593 16.5605C77.7593 15.6816 77.6597 14.8848 77.4605 14.1699C77.2612 13.4551 76.9624 12.8516 76.564 12.3594C76.1773 11.8555 75.6851 11.4687 75.0874 11.1992C74.4898 10.918 73.7925 10.7773 72.9956 10.7773C72.187 10.7773 71.5425 10.8184 71.062 10.9004C70.5816 10.9824 70.2183 11.0703 69.9722 11.1641V22.8008ZM107.13 35V34.9297C107.154 34.8711 107.171 34.7832 107.183 34.666C107.195 34.5488 107.201 34.4434 107.201 34.3496C107.201 33.9863 107.148 33.5879 107.042 33.1543C106.949 32.709 106.761 32.1582 106.48 31.502L104.353 26.7207C103.697 26.6973 102.824 26.6855 101.734 26.6855C100.644 26.6855 99.4662 26.6855 98.2005 26.6855C97.2748 26.6855 96.3783 26.6855 95.5111 26.6855C94.6556 26.6855 93.8822 26.6973 93.1908 26.7207L91.1693 31.3613C90.9935 31.7949 90.806 32.2695 90.6068 32.7852C90.4076 33.3008 90.308 33.8223 90.308 34.3496C90.308 34.502 90.3197 34.6309 90.3431 34.7363C90.3666 34.8301 90.39 34.8945 90.4134 34.9297V35H86.8275V34.9297C87.0384 34.707 87.3021 34.3145 87.6185 33.752C87.9349 33.1777 88.2806 32.4629 88.6556 31.6074L98.7279 9.26562H100.134L109.679 30.7461C109.902 31.25 110.13 31.7422 110.365 32.2227C110.611 32.6914 110.839 33.1133 111.05 33.4883C111.261 33.8633 111.449 34.1797 111.613 34.4375C111.777 34.6953 111.888 34.8594 111.947 34.9297V35H107.13ZM95.7396 25.1738C96.4193 25.1738 97.1166 25.1738 97.8314 25.1738C98.5462 25.1621 99.2435 25.1562 99.9232 25.1562C100.615 25.1445 101.277 25.1387 101.91 25.1387C102.542 25.127 103.117 25.1152 103.632 25.1035L98.6927 13.9414L93.8412 25.1738H95.7396Z" />-->
-<!--            </svg>-->
-<!--          </a>-->
-<!--        </div>-->
-
-<!--        <div class="col-auto">-->
-<!--          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"-->
-<!--            aria-controls="offcanvasNavbar">-->
-<!--            <span class="navbar-toggler-icon"></span>-->
-<!--          </button>-->
-
-<!--          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"-->
-<!--            aria-labelledby="offcanvasNavbarLabel">-->
-<!--            <div class="offcanvas-header">-->
-<!--              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>-->
-<!--              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"-->
-<!--                aria-label="Close"></button>-->
-<!--            </div>-->
-
-<!--            <div class="offcanvas-body">-->
-<!--              <ul class="navbar-nav justify-content-end flex-grow-1 gap-1 gap-md-5 pe-3">-->
-<!--                  <li class="nav-item">-->
-<!--                      <a class="nav-link" href="../login">Home</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-item">-->
-<!--                      <a class="nav-link" href="../product">Product</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-item">-->
-<!--                      <a class="nav-link" href="../viewcart">Cart</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-item">-->
-<!--                      <a class="nav-link" href="../wishlist">Wishlist</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-item">-->
-<!--                      <a class="nav-link" href="../login">Contact</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-item">-->
-<!--                      <a class="nav-link" href="../login">My Orders</a>-->
-<!--                  </li>-->
-<!--                  <li class="nav-item">-->
-<!--                      <a class="nav-link" href="../login">Logout</a>-->
-<!--                  </li>-->
-<!--              </ul>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
-<!-- <div class="container">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-sm-120 col-md-120 col-lg-12 col-xs-12">-->
-<!--                            <div class="login">-->
-<!--                                <h4 class="login-title"></h4><br>-->
-<!--                                <h5 style="text-decoration: underline;">Products</h5>-->
-<!--                                {% for i in data %}-->
-<!--                                <div class="gallery d-inline-flex" style="float:left;position:relative;">-->
-<!--                                    <div class="container" >-->
-<!--                                        <div class="card" style="width:200px">-->
-
-<!--                                            <div class="card-body">-->
-<!--                                                <img src="{{i.product_details.image.url}}" alt="Card image" width="100" height="100">-->
-<!--                                                <h4 class="card-tittle">{{i.product_details.name}}</h4>-->
-<!--                                                <p class="card-text">Price:{{i.total_price}}</p>-->
-<!--                                                <p class="card-text">Quantity:{{i.quantity}}</p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-
-<!--                                </div>-->
-<!--                                      {% endfor %}-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div><br>-->
-<!--            <div align="left" class="container">-->
-<!--                <h5 style="text-decoration: underline;">Order Summary</h5>-->
-
-<!--                <h6>Deliver To:</h6>-->
-<!--                <p>Name : {{user.name}}</p>-->
-<!--                <p>Phone : {{user.phone}}</p>-->
-<!--                <p>Email : {{user.email}}</p>-->
-<!--                <p>Address:{{user.building_name}}, {{user.road_name}}, {{user.city}}, {{user.pincode}}, {{user.state}}</p>-->
-<!--            </div><br>-->
-<!--<a style="margin-top:-100px;margin-bottom: 300px;margin-right: -450px;margin-left: 900px;" href="payment/{{total}}" class="btn btn-primary">Proceed To Pay</a>-->
-<!--            <div  style="margin-top:-430px;margin-bottom: -300px;margin-right: -400px;margin-left: 900px;">-->
-<!--                <h6 style="text-decoration: underline;"> Price Details</h6>-->
-<!--                <h6>Total items:{{quantity}}</h6>-->
-<!--                <h6>Total Price:{{total}}</h6>-->
-
-<!--            </div>-->
-
-
-
-<!--    &lt;!&ndash; JS-->
-<!--============================================ &ndash;&gt;-->
-
-<!--    &lt;!&ndash; jQuery JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Modernizer JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/modernizr-2.8.3.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Popper JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/popper.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Bootstrap JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>-->
-
-<!--    &lt;!&ndash; Slick Slider JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/slick.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Barrating JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.barrating.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Counterup JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.counterup.js' %}"></script>-->
-<!--    &lt;!&ndash; Nice Select JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.nice-select.js' %}"></script>-->
-<!--    &lt;!&ndash; Sticky Sidebar JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.sticky-sidebar.js' %}"></script>-->
-<!--    &lt;!&ndash; Jquery-ui JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery-ui.min.js' %}"></script>-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.ui.touch-punch.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Lightgallery JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/lightgallery.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Scroll Top JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/scroll-top.js' %}"></script>-->
-<!--    &lt;!&ndash; Theia Sticky Sidebar JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/theia-sticky-sidebar.min.js' %}"></script>-->
-<!--    &lt;!&ndash; Waypoints JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/waypoints.min.js' %}"></script>-->
-<!--    &lt;!&ndash; jQuery Zoom JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/plugins/jquery.zoom.min.js' %}"></script>-->
-
-<!--    &lt;!&ndash; Vendor & Plugins JS (Please remove the comment from below vendor.min.js & plugins.min.js for better website load performance and remove js files from avobe) &ndash;&gt;-->
-<!--    &lt;!&ndash;-->
-<!--<script src="assets/js/vendor/vendor.min.js"></script>-->
-<!--<script src="assets/js/plugins/plugins.min.js"></script>-->
-<!--&ndash;&gt;-->
-
-<!--    &lt;!&ndash; Main JS &ndash;&gt;-->
-<!--    <script src="{% static 'assets/js/main.js' %}"></script>-->
-
-
-<!--</body>-->
-
-
-<!--</html>-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -995,77 +169,10 @@
           </svg></button>
       </form>
 
-      <h5 class="cat-list-title">Browse Categories</h5>
-
-      <ul class="cat-list">
-        <li class="cat-list-item">
-          <a href="#" title="Jackets">Jackets</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="T-shirts">T-shirts</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Handbags">Handbags</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Accessories">Accessories</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Cosmetics">Cosmetics</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Dresses">Dresses</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Jumpsuits">Jumpsuits</a>
-        </li>
-      </ul>
 
     </div>
   </div>
 
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
-    <div class="offcanvas-header justify-content-center">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div class="order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-pill">3</span>
-        </h4>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Growers cider</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$12</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Fresh grapes</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Heinz tomato ketchup</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$5</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
-          </li>
-        </ul>
-
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to Checkout</button>
-      </div>
-    </div>
-  </div>
 
 
   <nav class="navbar navbar-expand-lg bg-light text-uppercase fs-6 p-3 border-bottom align-items-center">
@@ -1131,56 +238,89 @@
 
 
 
+<section class="order-page">
+  <div class="container">
+    <div class="checkout-title">
+      <h3>Order Summary</h3>
+      <p>Review your items before payment</p>
+    </div>
 
-<section id="billboard" class="bg-light py-5">
-    <div class="container">
-                <div class="row">
-                    <div class="col-sm-120 col-md-120 col-lg-12 col-xs-12">
-                            <div class="login">
-                                <h4 class="login-title"></h4><br>
-                                <h5 style="text-decoration: underline;">Products</h5>
-                                {% for i in data %}
-                                <div class="gallery d-inline-flex" style="float:left;position:relative;">
-                                    <div class="container" >
-                                        <div class="card" style="width:200px">
+    <div class="row g-4">
 
-                                            <div class="card-body">
-                                                <img src="{{i.product_details.image.url}}" alt="Card image" width="100" height="100">
-                                                <h4 class="card-tittle">{{i.product_details.name}}</h4>
-                                                <p class="card-text">Price:{{i.total_price}}</p>
-                                                <p class="card-text">Quantity:{{i.quantity}}</p>
-                                        </div>
-                                    </div>
+      <!-- LEFT SIDE -->
+      <div class="col-lg-8">
 
-                                </div>
-                                      {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
+        <!-- Delivery Address -->
+        <div class="summary-card">
+          <div class="card-heading">
+            <span class="step-circle">1</span>
+            <h5>Deliver To</h5>
+          </div>
 
-                    </div>
-                </div>
-            </div><br>
-            <div align="left" class="container">
-                <h5 style="text-decoration: underline;">Order Summary</h5>
+          <div class="address-box">
+            <h6>{{user.name}}</h6>
+            <p>{{user.building_name}}, {{user.road_name}}, {{user.city}}, {{user.pincode}}, {{user.state}}</p>
+            <p><strong>Phone:</strong> {{user.phone}}</p>
+            <p><strong>Email:</strong> {{user.email}}</p>
+          </div>
+        </div>
 
-                <h6>Deliver To:</h6>
-                <p>Name : {{user.name}}</p>
-                <p>Phone : {{user.phone}}</p>
-                <p>Email : {{user.email}}</p>
-                <p>Address:{{user.building_name}}, {{user.road_name}}, {{user.city}}, {{user.pincode}}, {{user.state}}</p>
-            </div><br>
-<a style="margin-top:-100px;margin-bottom: 300px;margin-right: -450px;margin-left: 900px;" href="../payment/{{total}}" class="btn btn-primary">Proceed To Pay</a>
-            <div  style="margin-top:-430px;margin-bottom: -300px;margin-right: -400px;margin-left: 900px;">
-                <h6 style="text-decoration: underline;"> Price Details</h6>
-                <h6>Total items:{{quantity}}</h6>
-                <h6>Total Price:{{total}}</h6>
+        <!-- Products -->
+        <div class="summary-card mt-3">
+          <div class="card-heading">
+            <span class="step-circle">2</span>
+            <h5>Products</h5>
+          </div>
 
+          {% for i in data %}
+          <div class="product-summary">
+            <img src="{{i.product_details.image.url}}" alt="product">
+
+            <div class="product-info">
+              <h6>{{i.product_details.product_name}}</h6>
+              <p>Qty: {{i.quantity}}</p>
+              <strong>₹{{i.total_price}}</strong>
             </div>
+          </div>
+          {% endfor %}
+        </div>
 
+      </div>
 
+      <!-- RIGHT SIDE -->
+      <div class="col-lg-4">
+        <div class="price-card">
+          <h5>Price Details</h5>
 
-        </section>
+          <div class="price-row">
+            <span>Total Items</span>
+            <span>{{quantity}}</span>
+          </div>
+
+          <div class="price-row">
+            <span>Bag Total</span>
+            <span>₹{{total}}</span>
+          </div>
+
+          <div class="price-row">
+            <span>Delivery Charges</span>
+            <span class="free">FREE</span>
+          </div>
+
+          <hr>
+
+          <div class="price-row total-row">
+            <span>Total Amount</span>
+            <span>₹{{total}}</span>
+          </div>
+
+          <a href="../payment/{{total}}" class="pay-btn">Proceed To Pay</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 
 
@@ -1193,7 +333,168 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="{% static 'js/script.min.js' %}"></script>
+<style>
+  body {
+    background: #f5f5f5;
+  }
 
+  .order-page {
+    padding: 40px 0;
+    background: #f5f5f5;
+  }
+
+  .checkout-title {
+    margin-bottom: 25px;
+  }
+
+  .checkout-title h3 {
+    font-weight: 700;
+    color: #222;
+  }
+
+  .checkout-title p {
+    color: #777;
+    margin: 0;
+  }
+
+  .summary-card,
+  .price-card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 22px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  .card-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+  }
+
+  .card-heading h5 {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .step-circle {
+    width: 28px;
+    height: 28px;
+    background: #fc2779;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .address-box h6 {
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .address-box p {
+    margin-bottom: 6px;
+    color: #555;
+  }
+
+  .product-summary {
+    display: flex;
+    gap: 15px;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .product-summary:last-child {
+    border-bottom: none;
+  }
+
+  .product-summary img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border: 1px solid #eee;
+    border-radius: 6px;
+  }
+
+  .product-info h6 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .product-info p {
+    color: #777;
+    margin-bottom: 6px;
+  }
+
+  .product-info strong {
+    color: #222;
+    font-size: 16px;
+  }
+
+  .price-card {
+    position: sticky;
+    top: 90px;
+  }
+
+  .price-card h5 {
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    color: #555;
+    font-size: 15px;
+  }
+
+  .free {
+    color: #008000;
+    font-weight: 600;
+  }
+
+  .total-row {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .pay-btn {
+    display: block;
+    width: 100%;
+    background: #fc2779;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 20px;
+  }
+
+  .pay-btn:hover {
+    background: #e91e63;
+    color: white;
+  }
+
+  @media (max-width: 768px) {
+    .price-card {
+      position: static;
+    }
+
+    .product-summary img {
+      width: 75px;
+      height: 75px;
+    }
+  }
+</style>
 
 </body>
 
