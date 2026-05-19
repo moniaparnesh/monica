@@ -99,30 +99,6 @@ def logout(request):
     return redirect('login')
 
 
-def adminhome(request):
-    categories = Category.objects.all()
-    sub_categories = SubCategory.objects.all()
-    subsubcategories = Subsubcategory.objects.all()
-
-    admin = request.session.get('admin')
-    if not admin:
-        return redirect('login')
-
-
-    out_stock_products = product.objects.filter(product_quantity=0)
-    low_stock_products = product.objects.filter(
-        product_quantity__lte=5,
-        product_quantity__gt=0
-    )
-
-    return render(request, 'adminhome.html', {
-        'categories': categories,
-        'sub_categories': sub_categories,
-        'subsubcategories': subsubcategories,
-        'out_stock_products': out_stock_products,
-        'low_stock_products': low_stock_products,
-    })
-
 
 def user(request):
     categories = Category.objects.all()
@@ -158,6 +134,7 @@ def Add_Product(request):
             product_image = p.cleaned_data['product_image']
             hair_type = p.cleaned_data.get('hair_type')
             color = p.cleaned_data.get('color')
+            skin_type=p.cleaned_data.get('skin_type')
             description = p.cleaned_data.get('description')
 
 
@@ -192,6 +169,7 @@ def Add_Product(request):
                 sub_sub_category=subsubcategory_obj,
                 hair_type=hair_type,
                 color=color,
+                skin_type=skin_type,
                 description=description
             )
             return HttpResponse("Product saved successfully!")
@@ -300,9 +278,9 @@ def products(request, category_id=None):
             Q(description__icontains=query)
         )
     if hair_type:
-        data=data.filter(hair_type=hair_type)
+        data=data.filter(hair_type__icontains=hair_type)
     if skin_type:
-        data=data.filter(skin_type=skin_type)
+        data=data.filter(skin_type__icontains=skin_type)
     if min_price:
         data=data.filter(product_price__gte=min_price)
     if max_price:
@@ -326,11 +304,6 @@ def products(request, category_id=None):
         'colors': colors,
 
     })
-
-# def search(request):
-#     query = request.GET.get('q')
-#     results = product.objects.filter(product_name__icontains=query)
-#     return render(request, 'search.html', {'results': results})
 
 def search(request):
     query = request.GET.get('q')
@@ -589,7 +562,6 @@ def payment(request, d):
         'payment_capture': 1
     })
 
-    # If you are using session user
     username = request.session.get('user')
     user = signup.objects.get(username=username)
 
@@ -738,23 +710,6 @@ def delivery_reg(request):
             return render(request,'delivery_boy_register.html')
     return render(request,'delivery_boy_register.html')
 
-# def delivery_login(request):
-#     if request.method =='POST':
-#         a = request.POST['z5']
-#         b = request.POST['z6']
-#         data=delivery_boy_register.objects.get(username=a)
-#         if data.password==b:
-#             if data.status == 'Accepted':
-#                 request.session['delivery']=a
-#                 return redirect(delivery_home)
-#
-#             else:
-#                 return HttpResponse(request,'Request Pending')
-#
-#         else:
-#             return HttpResponse('Incorect password')
-#
-#     return render(request, 'delivery_boy_login.html')
 
 def delivery_home(request):
 
@@ -1087,10 +1042,60 @@ def login_api(request):
 
     return Response({"error": "Invalid password"}, status=400)
 
+from django.db.models import Sum, Count
+from django.db.models.functions import ExtractMonth
 
 
+def adminhome(request):
+    categories = Category.objects.all()
+    sub_categories = SubCategory.objects.all()
+    subsubcategories = Subsubcategory.objects.all()
+
+    admin = request.session.get('admin')
+    if not admin:
+        return redirect('login')
+    total_orders = orders.objects.count()
+
+    total_users = signup.objects.count()
+
+    total_products = product.objects.count()
+
+    total_revenue = orders.objects.aggregate(
+        total=Sum('amount')
+    )['total'] or 0
 
 
+    monthly_sales = (
+        orders.objects
+        .annotate(month=ExtractMonth('order_date'))
+        .values('month')
+        .annotate(total=Sum('amount'))
+        .order_by('month')
+    )
 
 
+    top_products = (
+        orders.objects
+        .values('product_details__product_name')
+        .annotate(total=Count('product_details'))
+        .order_by('-total')[:5]
+    )
+
+    low_stock = product.objects.filter(product_quantity__lt=5, product_quantity__gt=0)
+
+    out_stock_products = product.objects.filter(product_quantity=0)
+
+    return render(request, 'adminhome.html', {
+        'categories': categories,
+        'sub_categories': sub_categories,
+        'subsubcategories': subsubcategories,
+        'out_stock_products': out_stock_products,
+        'total_orders': total_orders,
+        'total_users': total_users,
+        'total_products': total_products,
+        'total_revenue': total_revenue,
+        'monthly_sales': monthly_sales,
+        'top_products': top_products,
+        'low_stock': low_stock,
+    })
 
