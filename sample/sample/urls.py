@@ -50,7 +50,7 @@ path('payment/<int:d>/', views.payment, name='payment'),
 path('cod-success/', views.cod_success, name='cod_success'),
 path('address/', views.address),
 path('order_summary', views.order_sum),
-path('success', views.order),
+path('success', views.order, name='order'),
 path('myorders', views.myorder, name='myorder'),
 path('rem/<int:d>/',views.rem),
 path('wishlist/remo/<int:d>/', views.remo, name='remove_wishlist'),
@@ -87,7 +87,6 @@ path('reset/<str:token>/', views.reset_password, name='reset'),
 path('api/products/', views.product_api),
 path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-
 ]
 
 if settings.DEBUG:
