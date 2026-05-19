@@ -345,15 +345,16 @@
   <script src="{% static 'js/script.min.js' %}"></script>
 
 
-<div class="container-fluid px-5">
+<div class="container-fluid px-2 px-md-5 mt-4">
   <div class="row">
 
     <!-- LEFT FILTER SIDEBAR -->
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-4 mb-4">
       <form method="get" action="{% url 'all_products' %}" class="filter-sidebar">
-
+        <h4 class="mb-4 fw-bold">Filters</h4>
+        
         <div class="filter-box mb-3">
-          <select name="sort" class="form-select border-0">
+          <select name="sort" class="form-select border-0 bg-light">
             <option value="">Sort By : Popularity</option>
             <option value="low_to_high" {% if sort == "low_to_high" %}selected{% endif %}>Price Low to High</option>
             <option value="high_to_low" {% if sort == "high_to_low" %}selected{% endif %}>Price High to Low</option>
@@ -361,68 +362,62 @@
           </select>
         </div>
 
-        <div class="filter-box">
-          <h5>Price</h5>
+        <div class="filter-box mb-3">
+          <h5 class="fw-semibold">Price</h5>
           <input type="number" name="min_price" class="form-control mb-2" placeholder="Min Price" value="{{ min_price }}">
           <input type="number" name="max_price" class="form-control mb-2" placeholder="Max Price" value="{{ max_price }}">
         </div>
 
-        <div class="filter-box">
-          <h5>Color</h5>
-          <input type="text" name="color" class="form-control" placeholder=" " value="{{ colors }}">
-
+        <div class="filter-box mb-3">
+          <h5 class="fw-semibold">Color</h5>
+          <input type="text" name="color" class="form-control" placeholder="Search Color" value="{{ colors }}">
         </div>
 
-        <div class="filter-box">
-          <h5>Hair Type</h5>
-          <input type="text" name="hair_type" class="form-control" placeholder=" " value="{{ hair_type }}">
+        <div class="filter-box mb-3">
+          <h5 class="fw-semibold">Hair Type</h5>
+          <input type="text" name="hair_type" class="form-control" placeholder="Search Hair Type" value="{{ hair_type }}">
         </div>
 
-        <div class="filter-box">
-          <h5>Skin Type</h5>
+        <div class="filter-box mb-3">
+          <h5 class="fw-semibold">Skin Type</h5>
           <input type="text" name="skin_type" class="form-control" placeholder="Oily, Dry" value="{{ skin_type }}">
         </div>
 
-        <button type="submit" class="btn btn-dark w-100 mt-3">Apply Filter</button>
-        <a href="{% url 'all_products' %}" class="btn btn-outline-dark w-100 mt-2">Reset</a>
+        <button type="submit" class="btn btn-nykaa w-100 mt-3 text-white fw-bold">Apply Filter</button>
+        <a href="{% url 'all_products' %}" class="btn btn-outline-nykaa w-100 mt-2 fw-bold">Reset</a>
 
       </form>
     </div>
 
-
-    <div class="col-md-9">
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- PRODUCTS GRID -->
+    <div class="col-lg-9 col-md-8">
+      <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 g-md-4">
 
         {% for i in data %}
         <div class="col">
-          <div class="nykaa-card">
+          <div class="nykaa-card h-100 d-flex flex-column">
 
             <div class="product-labels">
-              <span>FEATURED</span>
-              <span class="green">BESTSELLER</span>
+              <span class="featured-badge">FEATURED</span>
+              <span class="bestseller-badge">BESTSELLER</span>
             </div>
 
-            <a href="{% url 'product_detail' i.pk %}">
-              <img src="{{ i.image.url }}" class="nykaa-img" alt="{{ i.product_name }}">
+            <a href="{% url 'product_detail' i.pk %}" class="text-center d-block mb-2">
+              <img src="{{ i.image.url }}" class="nykaa-img img-fluid" alt="{{ i.product_name }}">
             </a>
 
-            <div class="card-body text-center">
-              <h5 class="product-name">
+            <div class="card-body text-center d-flex flex-column flex-grow-1 p-0 mt-2">
+              <h5 class="product-name flex-grow-1">
                 <a href="{% url 'product_detail' i.pk %}">
                   {{ i.product_name }}
                 </a>
               </h5>
 
-              <p class="price">
-                ₹{{ i.product_price }}
-              </p>
+              <p class="price mb-1">₹{{ i.product_price }}</p>
+              <p class="stock mb-2">Stock: {{ i.product_quantity }}</p>
 
-              <p class="stock">Stock: {{ i.product_quantity }}</p>
-
-
-
-              <a href="../cart/{{ i.pk }}" class="btn btn-dark w-100 mt-2">
-                Add to Cart
+              <a href="../cart/{{ i.pk }}" class="btn btn-nykaa w-100 mt-auto text-white fw-semibold">
+                Add to Bag
               </a>
             </div>
 
@@ -436,45 +431,119 @@
   </div>
 </div>
 <style>
-  .product-img {
-    transition: transform 0.3s ease;
-  }
-  .card:hover .product-img {
-    transform: scale(1.05);
-  }
-
-  /* Card shadow effect on hover */
-  .card:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
-    transition: box-shadow 0.3s ease;
-  }
-
-
-  .card-title:hover {
-    color: #0d6efd;
-    transition: color 0.3s ease;
-  }
-.product-img {
-  height: 250px;
-  width: 100%;
-  object-fit: contain;
-  background-color: #f8f9fa;
+/* NYKAA STYLE & RESPONSIVE CSS */
+body {
+  background: #f4f4f4;
+  font-family: 'Jost', sans-serif;
+  color: #333;
 }
 
-.dropdown-submenu,
-.dropdown-subsubmenu {
+.btn-nykaa {
+  background-color: #fc2779;
+  border-color: #fc2779;
+  border-radius: 4px;
+}
+.btn-nykaa:hover {
+  background-color: #d8165d;
+  border-color: #d8165d;
+  color: #fff;
+}
+.btn-outline-nykaa {
+  border-color: #fc2779;
+  color: #fc2779;
+  border-radius: 4px;
+  background: transparent;
+}
+.btn-outline-nykaa:hover {
+  background-color: #fc2779;
+  color: #fff;
+}
+
+.filter-sidebar {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 90px;
+}
+.filter-box {
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 15px;
+}
+.filter-box:last-child {
+  border-bottom: none;
+}
+
+.nykaa-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.nykaa-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.nykaa-img {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.nykaa-card:hover .nykaa-img {
+  transform: scale(1.05);
+}
+
+.product-labels {
+  display: flex;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+.featured-badge {
+  color: #fc2779;
+}
+.bestseller-badge {
+  color: #008945;
+}
+
+.product-name a {
+  text-decoration: none;
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.product-name a:hover {
+  color: #fc2779;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+.stock {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Navbar / Dropdown overrides */
+.dropdown-submenu, .dropdown-subsubmenu {
     position: relative;
 }
-
-.dropdown-submenu > .dropdown-menu {
-    top: 0;
-    left: 100%;
-    position: absolute;
-    margin-top: -1px;
-    display: none;
-    z-index: 1000;
-}
-
+.dropdown-submenu > .dropdown-menu,
 .dropdown-subsubmenu > .dropdown-menu {
     top: 0;
     left: 100%;
@@ -483,183 +552,37 @@
     display: none;
     z-index: 1000;
 }
-
-
 .dropdown-submenu:hover > .dropdown-menu,
 .dropdown-subsubmenu:hover > .dropdown-menu {
     display: block;
 }
 
-
-.dropdown-menu {
-    margin-top: 0;
-}
-      </style>
-
-
-
-<style>
-body {
-  background: #fff7fb;
-  font-family: 'Jost', sans-serif;
-}
-
-h2 {
-  font-weight: 700;
-  margin-top: 40px;
-  color: #222;
-}
-
-.card {
-  border-radius: 18px;
-  overflow: hidden;
-  transition: 0.3s ease;
-  background: white;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-}
-
-.product-img {
-  height: 260px;
-  width: 100%;
-  object-fit: contain;
-  padding: 15px;
-  background: #f5f5f5;
-  transition: transform 0.3s ease;
-}
-
-.card:hover .product-img {
-  transform: scale(1.08);
-}
-
-.badge {
-  font-size: 15px;
-  border-radius: 20px;
-  background: #222 !important;
-}
-
-.card-title a {
-  font-weight: 600;
-  font-size: 19px;
-  color: #222;
-}
-
-.card-title a:hover {
-  color: #222 !important;
-}
-
-.btn-primary {
-  background: #222;
-  border: none;
-  border-radius: 25px;
-}
-
-.btn-primary:hover {
-  background: #000;
-}
-
-.btn-outline-primary {
-  border-color: #222;
-  color: #222;
-  border-radius: 25px;
-}
-
-.btn-outline-primary:hover {
-  background: #222;
-  color: white;
-}
-
-.row {
-  padding: 20px 40px;
-}
-</style>
-<style>
-body {
-  background: #f3f3f3;
-}
-
-.filter-sidebar {
-  position: sticky;
-  top: 100px;
-}
-
-.filter-box {
-  background: white;
-  padding: 20px;
-  border-bottom: 1px solid #eee;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-}
-
-.filter-box h5 {
-  font-size: 20px;
-  color: #222;
-  margin-bottom: 15px;
-}
-
-.nykaa-card {
-  background: white;
-  padding: 22px;
-  min-height: 470px;
-  transition: 0.3s ease;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-}
-
-.nykaa-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
-
-.product-labels {
-  display: flex;
-  gap: 18px;
-  font-size: 13px;
-  color: #e80071;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.product-labels .green {
-  color: #28a745;
-}
-
-.nykaa-img {
-  width: 100%;
-  height: 260px;
-  object-fit: contain;
-}
-
-.product-name a {
-  text-decoration: none;
-  color: #111;
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.price {
-  font-size: 20px;
-  font-weight: 700;
-  color: #222;
-  margin-top: 10px;
-}
-
-.stock {
-  color: #555;
-  font-size: 14px;
-}
-
-.gift-text {
-  color: #e80071;
-  text-decoration: none;
-  font-size: 15px;
-}
-
-.btn-dark {
-  background: #222;
-  border-radius: 0;
-  border: none;
+/* MOBILE RESPONSIVE TWEAKS */
+@media (max-width: 768px) {
+  .nykaa-img {
+    height: 160px;
+  }
+  .product-name a {
+    font-size: 14px;
+  }
+  .price {
+    font-size: 16px;
+  }
+  .nykaa-card {
+    padding: 10px;
+  }
+  .btn-nykaa {
+    font-size: 13px;
+    padding: 8px;
+  }
+  .product-labels {
+    font-size: 9px;
+    gap: 5px;
+  }
+  .filter-sidebar {
+    position: static;
+    margin-bottom: 20px;
+  }
 }
 </style>
 
